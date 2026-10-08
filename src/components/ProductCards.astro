@@ -1,0 +1,4 @@
+---
+const {products,part}=Astro.props;const u=(p)=>import.meta.env.BASE_URL+p+'/';
+---
+<div class="grid product-grid">{products.map(p=><article class="card product-card">{p.icon&&<img class="plugin-corner-logo" src={import.meta.env.BASE_URL+(p.icon)} alt={p.title+' 아이콘'} width="36" height="36" loading="lazy"/>}{p.screenshots[0]&&<img class="product-image" src={import.meta.env.BASE_URL+p.screenshots[0].src.slice(1)} alt={p.screenshots[0].alt} loading="lazy"/>}<h3><a href={u('software/'+p.id+(part==='manuals'?'/manual':part==='release-notes'?'/release-notes':part==='beta-testing'?'/beta-testing':''))}>{p.title}</a></h3><p>{p.description}</p><p class="meta">{p.kind==='audio-plugins'?'macOS · AU / VST3':'macOS'} · {p.version} · {p.status}</p><a class="details-link" href={u('software/'+p.id)}>View Details →</a>{part==='downloads'&&(p.download?<a class="button" href={u('software/'+p.id)}>다운로드 안내</a>:<button disabled>공개 다운로드 없음</button>)}</article>)}</div>

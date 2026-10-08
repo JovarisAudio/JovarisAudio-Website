@@ -1,0 +1,25 @@
+{
+  "name": "jovaris-audio-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test tests/*.test.mjs",
+    "qa": "node scripts/qa.mjs",
+    "browser:qa": "node scripts/browser-qa.mjs",
+    "integration:qa": "node scripts/integration-qa.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,54 @@
+name: Deploy Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Set Pages address
+        shell: bash
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          repo="${GITHUB_REPOSITORY#*/}"
+          echo "PUBLIC_SITE_URL=https://${owner}.github.io" >> "$GITHUB_ENV"
+          if [[ "${repo,,}" == "${owner}.github.io" ]]; then
+            echo "PUBLIC_BASE_PATH=/" >> "$GITHUB_ENV"
+          else
+            echo "PUBLIC_BASE_PATH=/${repo}/" >> "$GITHUB_ENV"
+          fi
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test && pnpm build && pnpm qa
+        env:
+          ASTRO_TELEMETRY_DISABLED: 1
+          PUBLIC_SUPPORT_URL: ${{ vars.PUBLIC_SUPPORT_URL }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
