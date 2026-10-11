@@ -7,4 +7,56 @@ const base=import.meta.env.BASE_URL;const url=(p='')=>base+p;
 const canonicalURL=canonical || (Astro.site ? new URL(Astro.url.pathname,Astro.site).href : undefined);
 
 ---
-<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} · JOVARIS AUDIO</title><meta name="description" content={description}/>{canonicalURL&&<link rel="canonical" href={canonicalURL}/>}<meta name="robots" content={Astro.site?'index,follow':'noindex,nofollow'}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>{canonicalURL&&<meta property="og:url" content={canonicalURL}/>}<meta name="theme-color" content="#fafafa"/><link rel="icon" href={url('favicon.ico')} sizes="any"/><link rel="icon" href={url('favicon-32x32.png')} type="image/png" sizes="32x32"/><link rel="apple-touch-icon" href={url('apple-touch-icon.png')}/></head><body class={'page-'+section}><a class="skip" href="#main">본문으로 이동</a><header><a class="brand" href={url()}><img class="brand-mark" src={url('images/ja-symbol.webp')} alt="" width="36" height="36"/><span class="brand-name">JOVARIS <span class="brand-audio">AUDIO</span></span></a><nav aria-label="주 메뉴">{['Home','Music','Journal','Software'].map((label,i)=><a href={url(i?label.toLowerCase()+'/':'')} aria-current={(i===0?Astro.url.pathname===base:Astro.url.pathname.startsWith(url(label.toLowerCase()+'/')))?'page':undefined}>{label}</a>)}</nav></header><main id="main"><slot/></main><footer><div><div class="footer-brand"><img src={url('images/ja-symbol.webp')} alt="JA 심벌" width="40" height="40" loading="lazy"/><strong>JOVARIS AUDIO</strong></div><p>음악가의 작업 공간.</p></div><div><a href={url('about/')}>About</a><a href={url('support/')}>Support</a><a href={url('software/downloads/')}>Downloads</a><p>© 2026 Jovaris Audio / WH</p></div></footer></body></html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} · JOVARIS AUDIO</title><meta name="description" content={description}/>{canonicalURL&&<link rel="canonical" href={canonicalURL}/>}<meta name="robots" content={Astro.site?'index,follow':'noindex,nofollow'}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>{canonicalURL&&<meta property="og:url" content={canonicalURL}/>}<meta name="theme-color" content="#fafafa"/><link rel="icon" href={url('favicon.ico')} sizes="any"/><link rel="icon" href={url('favicon-32x32.png')} type="image/png" sizes="32x32"/><link rel="apple-touch-icon" href={url('apple-touch-icon.png')}/></head><body class={'page-'+section}><a class="skip" href="#main">본문으로 이동</a><header><a class="brand" href={url()}><img class="brand-mark" src={url('images/ja-symbol.webp')} alt="" width="36" height="36"/><span class="brand-name">JOVARIS <span class="brand-audio">AUDIO</span></span></a><nav aria-label="주 메뉴">{['Home','Music','Journal','Software'].map((label,i)=><a href={url(i?label.toLowerCase()+'/':'')} aria-current={(i===0?Astro.url.pathname===base:Astro.url.pathname.startsWith(url(label.toLowerCase()+'/')))?'page':undefined}>{label}</a>)}</nav><div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="ko" aria-pressed="true">KO</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button></div></header><main id="main"><slot/></main><footer><div><div class="footer-brand"><img src={url('images/ja-symbol.webp')} alt="JA 심벌" width="40" height="40" loading="lazy"/><strong>JOVARIS AUDIO</strong></div><p>음악가의 작업 공간.</p></div><div><a href={url('about/')}>About</a><a href={url('support/')}>Support</a><a href={url('software/downloads/')}>Downloads</a><p>© 2026 Jovaris Audio / WH</p></div></footer></body></html>
+
+<script>
+import translations from '../data/translations.json';
+const dictionary = Object.entries(translations).sort((a,b)=>b[0].length-a[0].length);
+const translate=(value:string)=>{
+ let result=value;
+ for(const [ko,en] of dictionary) result=result.split(ko).join(en);
+ return result.replace(/(\d+)편/g,'$1 entries');
+};
+const originals=new WeakMap<Node,string>();
+const attributeOriginals=new WeakMap<Element,Map<string,string>>();
+let current='ko';
+let observer:MutationObserver;
+function update(root:Node,language:string){
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('script,style,code,pre,[data-language],.language-switch')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+ while(walker.nextNode()){
+  const node=walker.currentNode;
+  if(!originals.has(node)) originals.set(node,node.textContent||'');
+  const value=originals.get(node)!;
+  node.textContent=language==='en'?translate(value):value;
+ }
+ const elements=root instanceof Element?[root,...root.querySelectorAll('*')]:[...document.querySelectorAll('*')];
+ for(const element of elements){
+  if(!attributeOriginals.has(element)) attributeOriginals.set(element,new Map());
+  const attrs=attributeOriginals.get(element)!;
+  for(const attr of ['aria-label','alt','placeholder','content']){
+   if(!element.hasAttribute(attr))continue;
+   if(!attrs.has(attr))attrs.set(attr,element.getAttribute(attr)!);
+   element.setAttribute(attr,language==='en'?translate(attrs.get(attr)!):attrs.get(attr)!);
+  }
+ }
+}
+function setLanguage(language:string,persist=false){
+ current=language; observer?.disconnect(); update(document.documentElement,language);
+ document.documentElement.lang=language;
+ document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===language)));
+ if(persist){try{localStorage.setItem('jovaris-language',language)}catch{}}
+ observer.observe(document.body,{childList:true,subtree:true,characterData:true});
+}
+observer=new MutationObserver(records=>{
+ observer.disconnect();
+ for(const record of records){
+  if(record.type==='characterData'){originals.delete(record.target);update(record.target.parentNode!,current)}
+  else for(const node of record.addedNodes)update(node,current);
+ }
+ observer.observe(document.body,{childList:true,subtree:true,characterData:true});
+});
+let language=navigator.language.toLowerCase().startsWith('ko')?'ko':'en';
+try{const saved=localStorage.getItem('jovaris-language');if(saved==='ko'||saved==='en')language=saved}catch{}
+document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.language!,true)));
+setLanguage(language);
+</script>
