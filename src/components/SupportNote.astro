@@ -1,0 +1,6 @@
+---
+const candidate=import.meta.env.PUBLIC_SUPPORT_URL;
+let support;
+try{const url=new URL(candidate);if(url.protocol==='https:'&&['buymeacoffee.com','www.buymeacoffee.com'].includes(url.hostname)&&url.pathname!=='/')support=url.href;}catch{}
+---
+<aside class="support-note"><p>후원은 선택입니다. 제품은 후원 여부와 관계없이 무료로 사용할 수 있습니다.</p>{support?<a class="support-link" href={support} target="_blank" rel="noopener noreferrer">커피 한 잔으로 응원하기 ↗</a>:<p class="meta">Buy Me a Coffee 연결을 준비하고 있습니다.</p>}</aside>

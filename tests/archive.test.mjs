@@ -5,7 +5,3 @@ test('draft does not enter archive',()=>assert.deepEqual(published([entry('draft
 test('duplicates fail',()=>assert.throws(()=>validateArchive([entry('a',1),entry('b',1)],[],[]),/Duplicate/));
 test('unresolved private music and product references fail',()=>{let a=entry('a',1);a.data.related_music=['private'];assert.throws(()=>validateArchive([a],[],[]),/Unknown music/);a.data.related_music=[];a.data.related_products=['unknown'];assert.throws(()=>validateArchive([a],[],[]),/Unknown product/)});
 test('related entries exclude current article',()=>{const a=entry('a',1),b=entry('b',2);assert.deepEqual(related([a,b],a).map(e=>e.id),['b'])});
-
-import {validateProducts} from '../src/lib/archive.mjs';
-test('private or unapproved download cannot reach a build',()=>{assert.throws(()=>validateProducts([{kind:'audio-plugins',status:'클로즈 테스트',screenshots:[],download:{url:'https://github.com/x/y',approved:true,visibility:'public',sha256:'a'.repeat(64)}}]),/Only approved/)});
-test('public download needs trusted HTTPS provider, hash and alt',()=>{const p={kind:'audio-plugins',status:'공개 릴리스',screenshots:[],download:{url:'https://github.com/x/y/releases/download/v1/x.zip',approved:true,visibility:'public',sha256:'a'.repeat(64)}};validateProducts([p]);p.download.url='https://example.org/a';assert.throws(()=>validateProducts([p]),/Unsupported/);p.download=null;p.screenshots=[{src:'/images/a.png',alt:''}];assert.throws(()=>validateProducts([p]),/alt/)});

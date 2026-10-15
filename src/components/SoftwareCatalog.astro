@@ -1,0 +1,12 @@
+---
+import {releasedProducts,previewProducts,hasMacApps} from '../lib/catalog.mjs';
+import ProductCards from './ProductCards.astro';
+import SupportNote from './SupportNote.astro';
+const {kind}=Astro.props;
+const audio=releasedProducts.filter(p=>p.kind==='audio-plugins');
+const apps=releasedProducts.filter(p=>p.kind==='macos-apps');
+---
+<p class="lead">음악에서 시작된 오디오 도구.</p><p class="free-policy">초기 모든 제품은 무료로 제공하며, 후원 여부에 따른 기능 제한은 없습니다.</p>
+<section class="section available-section"><h2>Available</h2>{kind==='macos-apps'?<ProductCards products={apps}/>:<>{audio.length?<ProductCards products={audio}/>:<p class="empty">현재 공개 다운로드가 제공되는 제품은 없습니다.</p>}{hasMacApps&&!kind&&<section class="section macos-collection"><h2>macOS Apps</h2><ProductCards products={apps}/></section>}</>}</section>
+{kind!=='macos-apps'&&previewProducts.length>0&&<section class="section preview-section"><h2>In the Works</h2><div class="preview-grid">{previewProducts.map(p=><article class="preview-item">{p.icon&&<img src={import.meta.env.BASE_URL+p.icon} alt="" width="40" height="40" loading="lazy"/>}<h3>{p.title}</h3></article>)}</div></section>}
+<SupportNote/>

@@ -1,0 +1,11 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {validateCatalog,previewProducts,releasedProducts,hasMacApps} from '../src/lib/catalog.mjs';
+const preview=id=>({id,title:id,publication:'preview',kind:'audio-plugins'});
+const release=()=>({id:'fixture',title:'Fixture',publication:'released',kind:'audio-plugins',price:0,version:'1.0',description:'Verified release fixture',platforms:[{os:'Verified OS',formats:['AU'],verified:true}],screenshots:[{src:'/images/fixture.webp',alt:'Fixture screenshot'}],download:{url:'https://github.com/example/fixture/releases/download/v1/fixture.zip',approved:true,visibility:'public',sha256:'a'.repeat(64)}});
+test('current catalog has only the three approved previews and no invented release',()=>{assert.deepEqual(previewProducts.map(p=>p.id),['common-ground','orange-lift','phase-check']);assert.equal(releasedProducts.length,0);assert.equal(hasMacApps,false)});
+test('preview cap is enforced',()=>assert.throws(()=>validateCatalog(['a','b','c','d'].map(preview)),/At most three/));
+test('preview cannot leak descriptions, UI, dates, progress or download',()=>{for(const key of ['description','features','dsp','screenshots','releaseDate','progress','download'])assert.throws(()=>validateCatalog([{...preview('a'),[key]:'secret'}]),/only name/)});
+test('internal data cannot enter public catalog',()=>assert.throws(()=>validateCatalog([{...preview('internal'),publication:'internal'}]),/outside the public/));
+test('duplicate release and preview identity fails',()=>assert.throws(()=>validateCatalog([release(),{...preview('fixture')}]),/duplicate/));
+test('released products require free price and verified platforms',()=>{validateCatalog([release()]);for(const change of [{price:1},{platforms:[{os:'Unknown',formats:['VST3'],verified:false}]},{screenshots:[]},{download:null}])assert.throws(()=>validateCatalog([{...release(),...change}]))});
+test('download must be approved, HTTPS and hashed',()=>{for(const change of [{approved:false},{url:'http://github.com/file'},{url:'https://untrusted.test/file'},{sha256:'invalid'}]){const p=release();Object.assign(p.download,change);assert.throws(()=>validateCatalog([p]))}});
