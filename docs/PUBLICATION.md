@@ -10,7 +10,7 @@ Use `src/lib/catalog.mjs` selectors in every page, feed and search feature. Do n
 
 macOS Apps is shown only once at least one macOS app has an approved public release. Keep that collection separate from Audio Plugins. Home emphasizes music and released audio products; previews remain on Software.
 
-All initial products are free, regardless of support. Do not add paywalls, subscriptions, sales or mandatory support dialogs. `SupportNote.astro` reuses `PUBLIC_SUPPORT_URL` only when it is a Buy Me a Coffee HTTPS profile link. If missing or invalid, show a quiet pending notice. Do not manufacture an account or link. Downloads must appear before support on product pages.
+All initial products are free, regardless of support. Do not add paywalls, subscriptions, sales or mandatory support dialogs. `SupportNote.astro` uses the user-provided profile https://buymeacoffee.com/Jovarisaudio from `src/data/site.json`. An optional `PUBLIC_SUPPORT_URL` overrides it; a blank CI variable keeps the configured profile. Only valid Buy Me a Coffee HTTPS profile links are accepted. Do not manufacture an account or link. Downloads must appear before support on product pages.
 
 Checks:
 
@@ -20,3 +20,7 @@ Checks:
 - `pnpm publication:qa`: preview the Pages build on port 4323 with `/JovarisAudio-Website/`, or override `QA_ORIGIN` and `QA_BASE`; verifies five widths, minimal previews, images, route exclusions and KO/EN.
 
 Removing content from the current tree does not erase prior public Git history. Do not add internal material and rely on a publication flag to hide it.
+
+## Language policy
+
+See [GLOBALIZATION.md](./GLOBALIZATION.md) for static EN/KO routes and original-language content rules. A released product also requires reviewed English and Korean descriptions and installation instructions; optional release notes, FAQs, feature and issue lists must be bilingual when present. Preview remains name/symbol only.

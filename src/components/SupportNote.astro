@@ -1,6 +1,6 @@
 ---
-const candidate=import.meta.env.PUBLIC_SUPPORT_URL;
-let support;
-try{const url=new URL(candidate);if(url.protocol==='https:'&&['buymeacoffee.com','www.buymeacoffee.com'].includes(url.hostname)&&url.pathname!=='/')support=url.href;}catch{}
+import {supportURL} from '../lib/support.mjs';
+const {compact=false,intro=true,locale='en'}=Astro.props;
+const support=supportURL(import.meta.env.PUBLIC_SUPPORT_URL);
 ---
-<aside class="support-note"><p>후원은 선택입니다. 제품은 후원 여부와 관계없이 무료로 사용할 수 있습니다.</p>{support?<a class="support-link" href={support} target="_blank" rel="noopener noreferrer">커피 한 잔으로 응원하기 ↗</a>:<p class="meta">Buy Me a Coffee 연결을 준비하고 있습니다.</p>}</aside>
+{(!compact||support)&&<aside class:list={['support-note',{'support-compact':compact}]}>{intro&&<p>{locale==='ko'?'Jovaris Audio와 함께하는 시간이 좋았다면, 앞으로의 작업을 응원할 수 있습니다.':'If you enjoy using Jovaris Audio, you can support future development.'}</p>}{!compact&&<p>후원은 선택입니다. 제품은 후원 여부와 관계없이 무료로 사용할 수 있습니다.</p>}{support?<a class="support-link" href={support} target="_blank" rel="noopener noreferrer">커피 한 잔으로 응원하기 ↗</a>:<p class="meta">Buy Me a Coffee 연결을 준비하고 있습니다.</p>}</aside>}

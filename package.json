@@ -11,10 +11,14 @@
     "qa": "node scripts/qa.mjs",
     "browser:qa": "node scripts/browser-qa.mjs",
     "integration:qa": "node scripts/integration-qa.mjs",
-    "publication:qa": "node scripts/publication-qa.mjs"
+    "publication:qa": "node scripts/publication-qa.mjs",
+    "globalization:qa": "node scripts/globalization-qa.mjs",
+    "globalization:content:qa": "node scripts/globalization-content-qa.mjs",
+    "globalization:seo:qa": "node scripts/globalization-seo-qa.mjs"
   },
   "dependencies": {
-    "astro": "^5.16.0"
+    "astro": "^5.16.0",
+    "parse5": "7.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0"

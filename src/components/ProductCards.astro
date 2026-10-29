@@ -1,4 +1,6 @@
 ---
-const {products}=Astro.props;const u=p=>import.meta.env.BASE_URL+p+'/';
+import {localizedPath} from '../lib/i18n.mjs';
+import {localizeReleasedProduct} from '../lib/content-language.mjs';
+const {products,locale='en'}=Astro.props;const u=p=>localizedPath(p,locale,import.meta.env.BASE_URL);
 ---
-<div class="grid product-grid available-grid">{products.map(p=><article class="card product-card available-card"><img class="product-image" src={import.meta.env.BASE_URL+p.screenshots[0].src.slice(1)} alt={p.screenshots[0].alt} loading="lazy"/><h3><a href={u('software/'+p.id)}>{p.title}</a></h3><p>{p.description}</p><p class="meta">{p.platforms.map(x=>x.os+' · '+x.formats.join(' / ')).join(' · ')} · {p.version}</p><a class="button" href={p.download.url}>Free Download</a><a class="details-link" href={u('software/'+p.id)}>View Details →</a></article>)}</div>
+<div class="grid product-grid available-grid">{products.map(raw=>{const p=localizeReleasedProduct(raw,locale);return <article class="card product-card available-card"><img class="product-image" src={import.meta.env.BASE_URL+p.screenshots[0].src.slice(1)} alt={p.screenshots[0].alt} loading="lazy"/><h3><a href={u('software/'+p.id)}><span data-official-name>{p.title}</span></a></h3><p><span data-content>{p.description}</span></p><p class="meta">{p.platforms.map(x=>x.os+' · '+x.formats.join(' / ')).join(' · ')} · {p.version}</p><a class="button" href={p.download.url}>{locale==='ko'?'무료 다운로드':'Free Download'}</a><a class="details-link" href={u('software/'+p.id)}>{locale==='ko'?'자세히 보기':'View Details'} →</a></article>})}</div>

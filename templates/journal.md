@@ -3,6 +3,11 @@ title: "기록 제목"
 date: 2026-10-08
 description: "기록 설명"
 draft: true
+language: ko
+original_language: ko
+# For a separately reviewed translation only:
+# translation_of: original-entry-slug
+# translation_reviewed: true
 category: studio-journal
 tags: []
 related_products: []

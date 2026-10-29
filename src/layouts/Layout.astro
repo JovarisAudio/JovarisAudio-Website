@@ -1,62 +1,23 @@
 ---
 import '../styles/global.css';
 import '../styles/ui-refresh.css';
-const {title='Jovaris Audio',description='음악을 만들고, 듣고, 연구하는 작업 공간. 음악 제작과 믹싱, 오디오 도구 개발의 기록.',canonical}=Astro.props;
-const section=Astro.url.pathname.includes('/journal')?'journal':Astro.url.pathname.includes('/music')?'music':Astro.url.pathname.includes('/software')?'software':'home';
-const base=import.meta.env.BASE_URL;const url=(p='')=>base+p;
-const canonicalURL=canonical || (Astro.site ? new URL(Astro.url.pathname,Astro.site).href : undefined);
-
+import {t,localizedPath} from '../lib/i18n.mjs';
+import SupportNote from '../components/SupportNote.astro';
+const {title='Jovaris Audio',description='음악·청취·연구와 창작 과정에서 직접 만든 도구를 위한 공간.',canonical,locale='en',alternates,isContent=false,noindex=false}=Astro.props;
+const base=import.meta.env.BASE_URL;
+const logical=Astro.url.pathname.slice(base.length).replace(/^ko\//,'');
+const section=logical.startsWith('journal')?'journal':logical.startsWith('music')?'music':logical.startsWith('software')?'software':'home';
+const url=(p='')=>localizedPath(p,locale,base);
+const translations=alternates||{en:logical,ko:'ko/'+logical};
+const canonicalURL=Astro.site&&!noindex?new URL(Astro.url.pathname,Astro.site).href:undefined;
+const hrefFor=l=>translations[l]!==undefined?base+translations[l]:localizedPath(logical.startsWith('journal/')?'journal/':logical.startsWith('music/')?'music/':'',l,base);
+const metaTitle=isContent?title:t(title,locale);
+const metaDescription=isContent?description:t(description,locale);
 ---
-<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} · JOVARIS AUDIO</title><meta name="description" content={description}/>{canonicalURL&&<link rel="canonical" href={canonicalURL}/>}<meta name="robots" content={Astro.site?'index,follow':'noindex,nofollow'}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>{canonicalURL&&<meta property="og:url" content={canonicalURL}/>}<meta name="theme-color" content="#fafafa"/><link rel="icon" href={url('favicon.ico')} sizes="any"/><link rel="icon" href={url('favicon-32x32.png')} type="image/png" sizes="32x32"/><link rel="apple-touch-icon" href={url('apple-touch-icon.png')}/></head><body class={'page-'+section}><a class="skip" href="#main">본문으로 이동</a><header><a class="brand" href={url()}><img class="brand-mark" src={url('images/ja-symbol.webp')} alt="" width="36" height="36"/><span class="brand-name">JOVARIS <span class="brand-audio">AUDIO</span></span></a><nav aria-label="주 메뉴">{['Home','Music','Journal','Software'].map((label,i)=><a href={url(i?label.toLowerCase()+'/':'')} aria-current={(i===0?Astro.url.pathname===base:Astro.url.pathname.startsWith(url(label.toLowerCase()+'/')))?'page':undefined}>{label}</a>)}</nav><div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="ko" aria-pressed="true">KO</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button></div></header><main id="main"><slot/></main><footer><div><div class="footer-brand"><img src={url('images/ja-symbol.webp')} alt="JA 심벌" width="40" height="40" loading="lazy"/><strong>JOVARIS AUDIO</strong></div><p>음악가의 작업 공간.</p></div><div><a href={url('about/')}>About</a><a href={url('support/')}>Support</a><a href={url('software/downloads/')}>Downloads</a><p>© 2026 Jovaris Audio / WH</p></div></footer></body></html>
-
+<!doctype html><html lang={locale} data-ui-language={locale}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title data-content>{metaTitle} · JOVARIS AUDIO</title><meta name="description" content={metaDescription} data-content/>{canonicalURL&&<link rel="canonical" href={canonicalURL}/>}<meta name="robots" content={Astro.site&&!noindex?'index,follow':'noindex,nofollow'}/>{Astro.site&&Object.entries(translations).map(([language,path])=><link rel="alternate" hreflang={language} href={new URL(base+path,Astro.site).href}/>)}{Astro.site&&translations.en&&<link rel="alternate" hreflang="x-default" href={new URL(base+translations.en,Astro.site).href}/>}<meta property="og:title" content={metaTitle} data-content/><meta property="og:description" content={metaDescription} data-content/><meta property="og:locale" content={locale==='ko'?'ko_KR':'en_US'}/><meta property="og:type" content={isContent?'article':'website'}/>{canonicalURL&&<meta property="og:url" content={canonicalURL}/>}<meta name="theme-color" content="#fafafa"/><link rel="icon" href={base+'favicon.ico'} sizes="any"/><link rel="icon" href={base+'favicon-32x32.png'} type="image/png" sizes="32x32"/><link rel="apple-touch-icon" href={base+'apple-touch-icon.png'}/>{canonical&&<meta name="citation_url" content={canonical}/>}</head><body class={'page-'+section}><a class="skip" href="#main">본문으로 이동</a><header><a class="brand" href={url()}><img class="brand-mark" src={base+'images/ja-symbol.webp'} alt="" width="36" height="36"/><span class="brand-name">JOVARIS <span class="brand-audio">AUDIO</span></span></a><nav aria-label="주 메뉴">{['Home','Music','Journal','Software'].map((label,i)=><a href={url(i?label.toLowerCase()+'/':'')} aria-current={(i===0?!logical:logical.startsWith(label.toLowerCase()+'/'))?'page':undefined}>{label}</a>)}</nav><div class="language-switch" role="group" aria-label="Language"><a href={hrefFor('en')} data-language="en" aria-current={locale==='en'?'true':undefined}>EN</a><span aria-hidden="true">/</span><a href={hrefFor('ko')} data-language="ko" aria-current={locale==='ko'?'true':undefined}>한국어</a></div></header><main id="main"><slot/></main><footer><div><div class="footer-brand"><img src={base+'images/ja-symbol.webp'} alt="JA 심벌" width="40" height="40" loading="lazy"/><strong>JOVARIS AUDIO</strong></div><p>{locale==='ko'?'음악과 청취, 연구와 창작 과정에서':'A place for music, listening, research,'}<br/>{locale==='ko'?'직접 만든 도구를 위한 공간.':'and tools built from creative practice.'}</p><SupportNote compact locale={locale}/></div><div><a href={url('music/')}>Music</a><a href={url('journal/')}>Journal</a><a href={url('software/')}>Software</a><a href={url('about/')}>About</a><a href={url('support/')}>Support</a><p>© 2026 Jovaris Audio / WH</p></div></footer></body></html>
 <script>
-import translations from '../data/translations.json';
-const dictionary = Object.entries(translations).sort((a,b)=>b[0].length-a[0].length);
-const translate=(value:string)=>{
- let result=value;
- for(const [ko,en] of dictionary) result=result.split(ko).join(en);
- return result.replace(/(\d+)편/g,'$1 entries');
-};
-const originals=new WeakMap<Node,string>();
-const attributeOriginals=new WeakMap<Element,Map<string,string>>();
-let current='ko';
-let observer:MutationObserver;
-function update(root:Node,language:string){
- const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('script,style,code,pre,[data-language],.language-switch')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
- while(walker.nextNode()){
-  const node=walker.currentNode;
-  if(!originals.has(node)) originals.set(node,node.textContent||'');
-  const value=originals.get(node)!;
-  node.textContent=language==='en'?translate(value):value;
- }
- const elements=root instanceof Element?[root,...root.querySelectorAll('*')]:[...document.querySelectorAll('*')];
- for(const element of elements){
-  if(!attributeOriginals.has(element)) attributeOriginals.set(element,new Map());
-  const attrs=attributeOriginals.get(element)!;
-  for(const attr of ['aria-label','alt','placeholder','content']){
-   if(!element.hasAttribute(attr))continue;
-   if(!attrs.has(attr))attrs.set(attr,element.getAttribute(attr)!);
-   element.setAttribute(attr,language==='en'?translate(attrs.get(attr)!):attrs.get(attr)!);
-  }
- }
-}
-function setLanguage(language:string,persist=false){
- current=language; observer?.disconnect(); update(document.documentElement,language);
- document.documentElement.lang=language;
- document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===language)));
- if(persist){try{localStorage.setItem('jovaris-language',language)}catch{}}
- observer.observe(document.body,{childList:true,subtree:true,characterData:true});
-}
-observer=new MutationObserver(records=>{
- observer.disconnect();
- for(const record of records){
-  if(record.type==='characterData'){originals.delete(record.target);update(record.target.parentNode!,current)}
-  else for(const node of record.addedNodes)update(node,current);
- }
- observer.observe(document.body,{childList:true,subtree:true,characterData:true});
-});
-let language=navigator.language.toLowerCase().startsWith('ko')?'ko':'en';
-try{const saved=localStorage.getItem('jovaris-language');if(saved==='ko'||saved==='en')language=saved}catch{}
-document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.language!,true)));
-setLanguage(language);
+const base=import.meta.env.BASE_URL;
+document.querySelectorAll<HTMLAnchorElement>('[data-language]').forEach(link=>link.addEventListener('click',()=>{try{localStorage.setItem('jovaris-language',link.dataset.language!)}catch{}}));
+// Explicit locale URLs are authoritative. Only remember a deliberate Home preference.
+if(location.pathname===base){try{if(localStorage.getItem('jovaris-language')==='ko')location.replace(base+'ko/'+location.search+location.hash)}catch{}}
 </script>

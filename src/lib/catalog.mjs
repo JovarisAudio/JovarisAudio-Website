@@ -11,6 +11,9 @@ export function validateCatalog(items){
    if(Object.keys(p).some(k=>!['id','title','kind','publication','icon'].includes(k)))throw Error('Preview may contain only name and official symbol');
   }
   if(p.publication==='released'){
+   if(!p.localizations_reviewed||!p.localizations?.en?.description||!p.localizations?.ko?.description||!p.localizations?.en?.manual||!p.localizations?.ko?.manual)throw Error('Released product needs reviewed English and Korean descriptions and installation instructions');
+   for(const field of ['release','faq','issues','features'])if((p[field]?.length||p.localizations.en[field]?.length||p.localizations.ko[field]?.length)&&(!p.localizations.en[field]?.length||!p.localizations.ko[field]?.length))throw Error('Release copy must be bilingual: '+field);
+
    if(!['audio-plugins','macos-apps'].includes(p.kind))throw Error('Invalid product kind');
    if(!p.description||!p.version||!p.platforms?.length||!p.screenshots?.length||p.price!==0)throw Error('Released product needs verified release metadata and free pricing');
    if(p.platforms.some(x=>!x.verified||!x.os||!x.formats?.length))throw Error('Only verified platforms and formats may be listed');

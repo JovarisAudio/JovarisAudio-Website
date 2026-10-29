@@ -1,4 +1,10 @@
-import {getCollection} from 'astro:content';
-import {releasedProducts as products,hasMacApps} from '../lib/catalog.mjs';
-import {published,categories} from '../lib/archive.mjs';
-export async function GET({site}){if(!site)return new Response('',{status:200});const j=published(await getCollection('journal')),m=published(await getCollection('music'));const paths=['','music/','journal/','journal/series/','software/','about/','support/',...Object.keys(categories).map(x=>'journal/category/'+x+'/'),...['audio-plugins',...(hasMacApps?['macos-apps']:[]),'downloads','manuals','release-notes','beta-testing'].map(x=>'software/'+x+'/'),...j.map(e=>'journal/'+e.id+'/'),...m.map(e=>'music/'+e.id+'/'),...products.flatMap(p=>['','manual/','release-notes/','beta-testing/'].map(s=>'software/'+p.id+'/'+s)),...[...new Set(j.map(e=>e.data.series).filter(Boolean))].map(s=>'journal/series/'+s+'/'),...[...new Set(j.flatMap(e=>e.data.tags))].map(t=>'journal/tag/'+encodeURIComponent(t)+'/')];const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;');return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+paths.map(p=>'<url><loc>'+esc(new URL(import.meta.env.BASE_URL+p,site).href)+'</loc></url>').join('')+'</urlset>',{headers:{'Content-Type':'application/xml'}});}
+import {siteData} from '../lib/site-routes.mjs';
+export async function GET({site}){
+ if(!site)return new Response('',{status:200});
+ const {routes}=await siteData();
+ const pages=[{path:'',alternates:{en:'',ko:'ko/'}},{path:'ko',alternates:{en:'',ko:'ko/'}},...routes];
+ const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
+ const absolute=p=>esc(new URL(import.meta.env.BASE_URL+p,site).href);
+ const body=pages.map(p=>'<url><loc>'+absolute(p.path?p.path+'/':'')+'</loc>'+Object.entries(p.alternates).map(([locale,path])=>'<xhtml:link rel="alternate" hreflang="'+locale+'" href="'+absolute(path)+'"/>').join('')+'</url>').join('');
+ return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'+body+'</urlset>',{headers:{'Content-Type':'application/xml'}});
+}
