@@ -39,7 +39,7 @@
 .music-link-waveform{width:190px;height:48px;object-fit:fill}@media(max-width:700px){.music-link-waveform{width:104px;height:38px}}
 .home-music-panel:before{filter:saturate(.82) brightness(.88)}.music-landscape-motto{color:#fff0d2;text-shadow:0 1px 3px #443521b3,0 2px 12px #302b2366}.music-landscape-motto span{color:#f6e5c3;text-shadow:0 1px 3px #443521b3,0 2px 8px #302b2366}
 .home-music-panel:before{filter:saturate(.98) brightness(.8)}
-.home-music-panel .section-head h2{color:#493b2e}.page-home .section:not(.home-music-panel):not(.home-software-panel) .section-head h2{color:#243746}.home-software-panel .section-head h2{color:#efe2ca}
+.home-music-panel .section-head h2{color:#243746}.page-home .section:not(.home-music-panel):not(.home-software-panel) .section-head h2{color:#243746}.home-software-panel .section-head h2{color:#efe2ca}
 .home-music-panel:before{filter:saturate(.82) brightness(.8)}.music-section-links a{color:#fff0d2;font-weight:600;text-shadow:0 1px 3px #443521b3;text-decoration-thickness:1px;text-underline-offset:4px}.music-section-links a:hover{text-decoration:underline}
 
 .language-switch{display:flex;align-items:center;gap:5px;margin-left:20px;flex-shrink:0;font-size:12px;color:#7a7b76}.language-switch button{border:0;background:transparent;color:#777;padding:8px 4px;cursor:pointer;font:inherit}.language-switch button[aria-pressed="true"]{color:#243746;font-weight:700}.language-switch button:focus-visible{outline:2px solid #a88656;outline-offset:2px}@media(max-width:700px){header{flex-wrap:wrap}.language-switch{margin-left:auto}html[lang="en"] .hero-content h1{font-size:25px}html[lang="en"] .hero-description{font-size:15px}}
@@ -56,3 +56,7 @@
 @media(min-width:701px){.hero-content{bottom:16%}.brand-paths{transform:translateX(-18px)}.hero-banner.recomposed .centered-quote{bottom:3.5%}}
 @media(max-width:700px){.language-switch{margin-left:0;gap:5px}.language-switch a{font-size:15px;padding:7px 10px}.brand-paths{margin-left:-4px}.hero-banner.recomposed .centered-quote{padding-top:12px}}
 @media(min-width:701px) and (max-width:1000px){header{flex-wrap:wrap;gap:12px}header nav{order:3;flex-basis:100%;justify-content:center}.language-switch{margin-left:auto}}
+
+/* Spacing-only transition; preserve the Hero and Music artwork. */
+.hero-banner.recomposed + .home-music-panel{margin-top:72px}
+@media(max-width:700px){.hero-banner.recomposed + .home-music-panel{margin-top:44px}}
