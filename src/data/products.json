@@ -17,5 +17,137 @@
     "title": "Phase Check",
     "kind": "audio-plugins",
     "publication": "preview"
+  },
+  {
+    "id": "red-horse-rodeo",
+    "title": "Red Horse Rodeo",
+    "version": "1.1.1",
+    "packageVersion": "1.1.1",
+    "build": 6,
+    "kind": "macos-apps",
+    "publication": "released",
+    "price": 0,
+    "description": "A macOS menu bar system monitor with a horse that reacts to CPU load. See live CPU, memory and network readings and up to about 30 minutes of session history.",
+    "localizations_reviewed": true,
+    "credit": "Designed by WH",
+    "copyright": "Copyright © 2026 Jovaris Audio / WH. All rights reserved.",
+    "platforms": [
+      {
+        "os": "macOS 15.8+",
+        "formats": [
+          "Apple Silicon / Intel Universal"
+        ],
+        "verified": true
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/images/rodeo-cover.jpg",
+        "alt": "Red Horse Rodeo"
+      }
+    ],
+    "icon": "images/rodeo-icon.webp",
+    "download": {
+      "url": "https://github.com/JovarisAudio/RedHorseRodeo-Releases/releases/download/v1.1.1/Red-Horse-Rodeo-1.1.1.dmg",
+      "visibility": "public",
+      "approved": true,
+      "sha256": "95b059f10185898f41bdb91822fe31f05dd14ebfdf9be6894b7c25946e38b056",
+      "zip": "https://github.com/JovarisAudio/RedHorseRodeo-Releases/releases/download/v1.1.1/Red-Horse-Rodeo-1.1.1.zip",
+      "checksums": "https://github.com/JovarisAudio/RedHorseRodeo-Releases/releases/download/v1.1.1/SHA256SUMS.txt",
+      "manual": "https://github.com/JovarisAudio/RedHorseRodeo-Releases/releases/download/v1.1.1/USER_MANUAL.md",
+      "release": "https://github.com/JovarisAudio/RedHorseRodeo-Releases/releases/tag/v1.1.1"
+    },
+    "localizations": {
+      "en": {
+        "description": "A macOS menu bar system monitor with a horse that reacts to CPU load. See live CPU, memory and network readings and up to about 30 minutes of session history.",
+        "manual": "Install from the DMG and open the app from Applications.",
+        "release": "At medium and high CPU load, a larger dust cloud spreads behind the hooves. The horse keeps its size and animation speed, and the menu bar icon uses more width.",
+        "issues": [
+          "Intel hardware and macOS Tahoe compatibility are unverified."
+        ],
+        "downloadNotice": "Not notarized; macOS may block first launch.",
+        "zipInfo": "The ZIP includes the same DMG, a bilingual user manual and the license.",
+        "features": [
+          "At medium and high CPU load, a larger dust cloud spreads behind the hooves. The horse keeps its size and animation speed, and the menu bar icon uses more width."
+        ]
+      },
+      "ko": {
+        "description": "CPU 부하에 반응하는 말이 있는 macOS 메뉴바 시스템 모니터. CPU·메모리·네트워크의 현재 수치와 최대 약 30분의 세션 이력을 보여줍니다.",
+        "manual": "DMG에서 앱을 응용 프로그램 폴더로 옮겨 실행하세요.",
+        "release": "CPU 부하가 중간 이상이면 발굽 뒤로 큰 흙먼지가 퍼집니다. 말의 크기와 애니메이션 속도는 그대로이고, 메뉴바 아이콘의 표시 폭은 넓어졌습니다.",
+        "issues": [
+          "Intel 실기기와 macOS Tahoe 호환성은 미검증입니다."
+        ],
+        "downloadNotice": "Apple 공증 미완료로 첫 실행이 차단될 수 있음",
+        "zipInfo": "ZIP에는 동일한 DMG와 한영 매뉴얼, 라이선스가 들어 있습니다.",
+        "features": [
+          "CPU 부하가 중간 이상이면 발굽 뒤로 큰 흙먼지가 퍼집니다. 말의 크기와 애니메이션 속도는 그대로이고, 메뉴바 아이콘의 표시 폭은 넓어졌습니다."
+        ]
+      }
+    }
+  },
+  {
+    "id": "whats-going-on",
+    "title": "What’s Going On?",
+    "version": "1.1",
+    "packageVersion": "1.1.0",
+    "build": 9,
+    "kind": "macos-apps",
+    "publication": "released",
+    "price": 0,
+    "description": "A macOS menu bar utility by Jovaris Audio that shows observed downloads, file and cloud activity, DAW jobs, installs and backups.",
+    "localizations_reviewed": true,
+    "platforms": [
+      {
+        "os": "macOS 15",
+        "formats": [
+          "Apple Silicon / Intel Universal"
+        ],
+        "verified": true
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/images/whats-going-on-cover.jpg",
+        "alt": "What’s Going On?"
+      }
+    ],
+    "icon": "images/whats-going-on-icon.png",
+    "download": {
+      "url": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/download/v1.1.0/WhatsGoingOn-1.1.0-build-9.dmg",
+      "visibility": "public",
+      "approved": true,
+      "sha256": "c64195cc9a9526777a6ac1217a4161a52619616054f395fdc55afca09ac6e56b",
+      "zip": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/download/v1.1.0/WhatsGoingOn-1.1.0-build-9.zip",
+      "checksums": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/download/v1.1.0/SHA256SUMS-1.1.0.txt",
+      "manual": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/download/v1.1.0/MANUAL.md",
+      "releaseNotes": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/download/v1.1.0/RELEASE_NOTES_1.1.0.md",
+      "release": "https://github.com/JovarisAudio/WhatsGoingOn-Releases/releases/tag/v1.1.0"
+    },
+    "supportEmail": "jovarisaudio@gmail.com",
+    "localizations": {
+      "en": {
+        "description": "A macOS menu bar utility by Jovaris Audio that shows observed downloads, file and cloud activity, DAW jobs, installs and backups.",
+        "manual": "Install the app from the DMG. See the bilingual manual for installation and permission settings.",
+        "release": "What’s Going On? 1.1.0 · Build 9. See the bilingual release notes for details.",
+        "issues": [
+          "Tested on macOS 15. The minimum deployment target is macOS 14, which has yet to be tested on actual hardware.",
+          "Some supported features require Accessibility permission. After an update, you may need to grant that permission again."
+        ],
+        "downloadNotice": "Not notarized by Apple; Gatekeeper may block first launch.",
+        "licenseNote": "The official download is licensed for personal use."
+      },
+      "ko": {
+        "description": "다운로드, 파일·클라우드 작업, DAW 작업, 설치와 백업 진행을 관찰해 보여주는 Jovaris Audio의 macOS 메뉴바 앱.",
+        "manual": "DMG에서 앱을 설치하세요. 설치와 권한 설정은 한·영 매뉴얼을 참고하세요.",
+        "release": "What’s Going On? 1.1.0 · 빌드 9. 자세한 변경 사항은 한·영 릴리즈 노트를 참고하세요.",
+        "issues": [
+          "macOS 15에서 검사했습니다. 최소 배포 대상은 macOS 14이며, 해당 버전의 실기기 검증은 아직 진행하지 않았습니다.",
+          "일부 지원 기능에 손쉬운 사용 권한이 필요합니다. 업데이트 후 해당 권한을 다시 등록해야 할 수 있습니다."
+        ],
+        "downloadNotice": "Apple 공증을 받지 않아 Gatekeeper가 첫 실행을 차단할 수 있습니다.",
+        "licenseNote": "공식 다운로드에는 개인 사용 라이선스가 적용됩니다."
+      }
+    }
   }
 ]

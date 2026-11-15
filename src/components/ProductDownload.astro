@@ -1,0 +1,27 @@
+---
+import { localizedPath } from '../lib/i18n.mjs';
+
+const { product, locale } = Astro.props;
+const ko = locale === 'ko';
+const { download } = product;
+const path = 'software/' + product.id;
+const href = (part) => localizedPath(path + '/' + part, locale, import.meta.env.BASE_URL);
+---
+<section class="section" data-content>
+  <h2>{ko ? '무료 다운로드' : 'Free Download'}</h2>
+  <a class="button" href={download.url}>
+    {product.packageVersion ? `DMG · ${product.packageVersion} (${ko ? '빌드' : 'Build'} ${product.build})` : `${ko ? '무료 다운로드' : 'Free Download'} · ${product.version}`}
+  </a>
+  {product.downloadNotice && <p class="notice">{product.downloadNotice}</p>}
+  {product.licenseNote && <p>{product.licenseNote}</p>}
+  {product.zipInfo && <p>{product.zipInfo}</p>}
+  {download.zip && <div class="filters">
+    <a href={download.zip}>ZIP · {product.packageVersion}</a>
+    <a href={download.checksums}>SHA-256</a>
+    <a href={download.releaseNotes ? download.manual : href('manual')}>{ko ? '한영 매뉴얼' : 'Bilingual manual'}</a>
+    <a href={download.releaseNotes || href('release-notes')}>{ko ? '릴리즈 노트' : 'Release notes'}</a>
+    <a href={download.release}>GitHub Releases ↗</a>
+  </div>}
+  {product.supportEmail && <p>{ko ? '지원 문의' : 'Support'} <a href={`mailto:${product.supportEmail}`}>{product.supportEmail}</a></p>}
+  <p>SHA-256: <code style="overflow-wrap:anywhere">{download.sha256}</code></p>
+</section>

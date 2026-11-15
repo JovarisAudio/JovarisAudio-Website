@@ -60,3 +60,59 @@
 /* Spacing-only transition; preserve the Hero and Music artwork. */
 .hero-banner.recomposed + .home-music-panel{margin-top:72px}
 @media(max-width:700px){.hero-banner.recomposed + .home-music-panel{margin-top:44px}}
+
+/* Software artwork uses public motifs without putting product interfaces in the background. */
+.software-intro-panel,
+.home-software-panel.software-intro-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  min-height: clamp(270px, 36vw, 400px);
+  padding: clamp(24px, 5vw, 62px);
+  border: 0;
+  border-radius: 12px;
+  background: #192832 !important;
+  color: #f2e5ce;
+}
+.software-intro-panel .software-art {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, #182630 15%, #192832ef 35%, #19283238 100%), var(--software-wood);
+  background-size: cover;
+  background-position: center 60%;
+}
+.software-intro-panel .software-art img {
+  position: absolute;
+  width: clamp(100px, 20vw, 240px);
+  height: auto;
+  object-fit: contain;
+  opacity: .7;
+}
+.software-art img:first-child { right: 4%; bottom: 13%; }
+.software-art img:last-child { right: 23%; top: 10%; transform: rotate(-8deg); opacity: .48; }
+.software-intro-copy { max-width: 51%; }
+.software-intro-copy h2 { margin: 0 0 16px; }
+.software-intro-copy h2,
+.software-intro-copy .software-intro,
+.software-intro-copy a { color: #fff0d9; }
+.software-intro-copy .software-intro { font-size: clamp(20px, 2.7vw, 30px); line-height: 1.35; }
+.software-intro-copy a { display: inline-block; margin-top: 8px; text-underline-offset: 4px; }
+.macos-collection .available-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.macos-collection .product-card { padding: clamp(16px, 2.3vw, 24px); }
+.macos-collection .product-card h3 { padding-right: 0; }
+.macos-collection .product-image { aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 18px; }
+.macos-collection .app-announcement .product-image { object-position: center 75%; }
+@media (max-width: 1000px) {
+  .macos-collection .available-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .macos-collection .available-grid { grid-template-columns: 1fr; }
+  .software-intro-copy { max-width: 100%; }
+  .software-intro-panel .software-art {
+    background-image: linear-gradient(90deg, #182630f5, #192832c9), var(--software-wood);
+  }
+  .software-intro-panel .software-art img { opacity: .16; }
+}

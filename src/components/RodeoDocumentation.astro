@@ -1,0 +1,19 @@
+---
+import { Content as ManualEn } from '../data/rodeo/manual.en.md';
+import { Content as ManualKo } from '../data/rodeo/manual.ko.md';
+import { Content as ReleaseEn } from '../data/rodeo/release.en.md';
+import { Content as ReleaseKo } from '../data/rodeo/release.ko.md';
+
+const { locale, part, product } = Astro.props;
+const ko = locale === 'ko';
+const manual = part === 'manual';
+const Content = manual ? (ko ? ManualKo : ManualEn) : (ko ? ReleaseKo : ReleaseEn);
+const build = ko ? '빌드' : 'Build';
+---
+<section class="article" data-content>
+  <h2>{manual ? `${product.title} ${product.version} ${ko ? '사용 설명서' : 'User Manual'}` : `${product.title} ${product.packageVersion} (${build} ${product.build})`}</h2>
+  <Content />
+  <p><a href={manual ? product.download.manual : product.download.release}>
+    {manual ? (ko ? '한영 매뉴얼 파일' : 'Bilingual manual file') : 'GitHub Releases'} ↗
+  </a></p>
+</section>

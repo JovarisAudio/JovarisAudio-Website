@@ -1,0 +1,18 @@
+---
+import { localizedPath } from '../lib/i18n.mjs';
+const { locale, home = false } = Astro.props;
+const ko = locale === 'ko';
+const base = import.meta.env.BASE_URL;
+---
+<section class:list={['section', 'software-intro-panel', { 'home-software-panel': home }]} style={{ '--software-wood': `url(${base}images/software-wood.jpg)` }} data-content>
+  <div class="software-art" aria-hidden="true">
+    <img src={base + 'images/software-ox.png'} alt="" width="500" height="350" />
+    <img src={base + 'images/rodeo-icon.webp'} alt="" width="256" height="256" />
+  </div>
+  <div class="software-intro-copy">
+    {home && <h2>Software</h2>}
+    <p class="software-intro">{ko ? '사운드를 다듬고 작업 흐름을 정리하는 도구.' : 'Tools for shaping sound and keeping work in view.'}</p>
+    <p>{ko ? '오디오 플러그인부터, 작업 중인 Mac의 상태를 살피고 메뉴 막대를 정리하는 작은 앱까지.' : 'Audio plug-ins and small macOS apps for monitoring activity, checking system load, and tidying the menu bar.'}</p>
+    {home && <a href={localizedPath('software', locale, base)}>{ko ? '소프트웨어 둘러보기' : 'Explore software'} →</a>}
+  </div>
+</section>

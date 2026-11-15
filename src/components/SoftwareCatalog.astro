@@ -1,12 +1,46 @@
 ---
-import {releasedProducts,previewProducts,hasMacApps} from '../lib/catalog.mjs';
+import { releasedProducts, previewProducts, hasMacApps } from '../lib/catalog.mjs';
+import { tuck } from '../data/tuck.mjs';
+import { localizedPath } from '../lib/i18n.mjs';
 import ProductCards from './ProductCards.astro';
+import SoftwareIntro from './SoftwareIntro.astro';
 import SupportNote from './SupportNote.astro';
-const {kind,locale='en'}=Astro.props;
-const audio=releasedProducts.filter(p=>p.kind==='audio-plugins');
-const apps=releasedProducts.filter(p=>p.kind==='macos-apps');
+
+const { kind, showTuck, locale = 'en' } = Astro.props;
+const ko = locale === 'ko';
+const base = import.meta.env.BASE_URL;
+const url = (path) => localizedPath(path, locale, base);
+const audio = releasedProducts.filter(p => p.kind === 'audio-plugins');
+const apps = releasedProducts.filter(p => p.kind === 'macos-apps');
 ---
-{(audio.length>0||hasMacApps)&&<div class="filters">{audio.length>0&&<a href={import.meta.env.BASE_URL+(locale==='ko'?'ko/':'')+'software/audio-plugins/'}>Audio Plugins</a>}{hasMacApps&&<a href={import.meta.env.BASE_URL+(locale==='ko'?'ko/':'')+'software/macos-apps/'}>macOS Apps</a>}</div>}<p class="lead">음악에서 시작된 오디오 도구.</p><p class="free-policy">초기 모든 제품은 무료로 제공하며, 후원 여부에 따른 기능 제한은 없습니다.</p><p class="meta">구독이나 사용 시간 제한 없이, 초기 모든 제품을 무료로 제공합니다.</p>
-<section class="section available-section"><h2>Available</h2>{kind==='macos-apps'?<ProductCards products={apps} locale={locale}/>:<>{audio.length?<ProductCards products={audio} locale={locale}/>:<p class="empty">현재 공개 다운로드가 제공되는 제품은 없습니다.</p>}{hasMacApps&&!kind&&<section class="section macos-collection"><h2>macOS Apps</h2><ProductCards products={apps} locale={locale}/></section>}</>}</section>
-{!kind&&previewProducts.length>0&&<section class="section preview-section"><h2>In the Works</h2><div class="preview-grid">{previewProducts.map(p=><article class="preview-item">{p.icon&&<img src={import.meta.env.BASE_URL+p.icon} alt="" width="40" height="40" loading="lazy"/>}<h3 data-official-name>{p.title}</h3></article>)}</div></section>}
-<SupportNote locale={locale}/>
+{showTuck && !kind && <SoftwareIntro {locale}/>}
+{!kind && (audio.length > 0 || hasMacApps) && <div class="filters">
+  {audio.length > 0 && <a href={url('software/audio-plugins')}>Audio Plugins</a>}
+  {hasMacApps && <a href={url('software/macos-apps')}>macOS Apps</a>}
+</div>}
+{kind !== 'macos-apps' && (audio.length > 0 || !showTuck) && <section class="section available-section">
+  <h2>{locale === 'ko' ? '다운로드 가능' : 'Available'}</h2>
+  {audio.length > 0 ? <ProductCards products={audio} {locale}/> :
+    <p class="empty">현재 공개 다운로드가 제공되는 제품은 없습니다.</p>}
+</section>}
+{showTuck && <section class="section macos-collection">
+  <h2>{kind ? (ko ? '제품 목록' : 'Apps') : 'macOS Apps'}</h2>
+  <ProductCards products={apps} {locale}>
+    <article class="card product-card app-announcement" data-content>
+      <img class="product-image" src={base + tuck.cover} alt="" loading="lazy"/>
+      <h3><a href={url(tuck.path)}>{tuck.name}</a></h3>
+      <p>{tuck[locale].description}</p>
+      <p class="meta">{tuck[locale].platform} · {tuck.version}</p>
+      <a class="button" href={tuck.downloads.dmg}>{tuck[locale].downloadButton} · {tuck.version}</a>
+      <a class="details-link" href={url(tuck.path)}>{ko ? '자세히 보기' : 'View details'} →</a>
+    </article>
+  </ProductCards>
+</section>}
+{!kind && previewProducts.length > 0 && <section class="section preview-section">
+  <h2>In the Works</h2>
+  <div class="preview-grid">{previewProducts.map(p => <article class="preview-item">
+    {p.icon && <img src={base + p.icon} alt="" width="40" height="40" loading="lazy"/>}
+    <h3 data-official-name>{p.title}</h3>
+  </article>)}</div>
+</section>}
+<SupportNote {locale}/>

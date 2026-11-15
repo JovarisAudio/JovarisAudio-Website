@@ -1,0 +1,54 @@
+---
+import { tuck } from '../data/tuck.mjs';
+import { Content as EnglishReleaseNotes } from '../data/tuck/release.en.md';
+import { Content as KoreanReleaseNotes } from '../data/tuck/release.ko.md';
+import { Content as EnglishHistory } from '../data/tuck/history.en.md';
+import { Content as KoreanHistory } from '../data/tuck/history.ko.md';
+
+const { locale } = Astro.props;
+const copy = tuck[locale];
+const ReleaseNotes = locale === 'ko' ? KoreanReleaseNotes : EnglishReleaseNotes;
+const History = locale === 'ko' ? KoreanHistory : EnglishHistory;
+---
+<article class="article" data-content>
+  <p class="notice">{tuck.title}</p>
+  <p class="lead">{copy.description}</p>
+  <p>{copy.about}</p>
+  <img class="product-image" src={import.meta.env.BASE_URL + tuck.cover} alt="" width="1280" height="720"/>
+
+  <h2>{copy.zonesTitle}</h2>
+  <p>{copy.zones}</p>
+
+  <h2>{copy.designTitle}</h2>
+  <p>{copy.design}</p>
+
+  <h2>{copy.quickStart}</h2>
+  <ol>{copy.steps.map(step => <li>{step}</li>)}</ol>
+
+  <h2>{copy.compatibility}</h2>
+  <p>{copy.verification}</p>
+
+  <section aria-labelledby="tuck-downloads">
+    <h2 id="tuck-downloads">{copy.downloadHeading}</h2>
+    <p>{copy.platform}</p>
+    <a class="button" href={tuck.downloads.dmg}>{copy.downloadButton} · {tuck.version}</a>
+    <div class="filters">
+      <a href={tuck.downloads.zip}>ZIP</a>
+      <a href={tuck.downloads.checksums}>SHA-256</a>
+      <a href={tuck.downloads.manual}>{copy.githubManual} ↗</a>
+      <a href={tuck.downloads.release}>{copy.githubNotes} ↗</a>
+    </div>
+  </section>
+
+  <h2>{copy.releaseHeading}</h2>
+  <div lang={locale}>
+    <ReleaseNotes />
+  </div>
+
+  <h2>{copy.historyHeading}</h2>
+  <History />
+</article>
+
+<style>
+  .product-image { aspect-ratio: 16 / 9; object-fit: cover; }
+</style>
