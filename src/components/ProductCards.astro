@@ -1,6 +1,30 @@
 ---
-import {localizedPath} from '../lib/i18n.mjs';
-import {localizeReleasedProduct} from '../lib/content-language.mjs';
-const {products,locale='en'}=Astro.props;const u=p=>localizedPath(p,locale,import.meta.env.BASE_URL);
+import { localizedPath } from '../lib/i18n.mjs';
+import { localizeReleasedProduct } from '../lib/content-language.mjs';
+
+const { products, locale = 'en', extraProduct } = Astro.props;
+const ko = locale === 'ko';
+const base = import.meta.env.BASE_URL;
+const cards = products.map(product => localizeReleasedProduct(product, locale));
+if (extraProduct) cards.push(extraProduct);
 ---
-<div class="grid product-grid available-grid">{products.map(raw=>{const p=localizeReleasedProduct(raw,locale);return <article class="card product-card available-card"><img class="product-image" src={import.meta.env.BASE_URL+p.screenshots[0].src.slice(1)} alt={p.screenshots[0].alt} loading="lazy"/><h3><a href={u('software/'+p.id)}><span data-official-name>{p.title}</span></a></h3><p><span data-content>{p.description}</span></p><p class="meta">{p.platforms.map(x=>x.os+' · '+x.formats.join(' / ')).join(' · ')} · {p.version}</p><a class="button" href={p.download.url}>{p.packageVersion ? `DMG · ${p.packageVersion} (${locale==='ko'?'빌드':'Build'} ${p.build})` : locale==='ko'?'무료 다운로드':'Free Download'}</a>{p.downloadNotice&&<p class="meta" data-content>{p.downloadNotice}</p>}<a class="details-link" href={u('software/'+p.id)}>{locale==='ko'?'자세히 보기':'View Details'} →</a></article>})}<slot/></div>
+<div class="grid product-grid available-grid">
+  {cards.map(product => {
+    const details = localizedPath('software/' + product.id, locale, base);
+    const image = product.screenshots[0];
+    const platform = product.platformLabel ?? product.platforms.map(item => item.os + ' · ' + item.formats.join(' / ')).join(' · ');
+    const build = product.build ? ` (${ko ? '빌드' : 'Build'} ${product.build})` : '';
+    const download = product.packageVersion ? `DMG · ${product.packageVersion}${build}` : ko ? '무료 다운로드' : 'Free Download';
+    return <article class="card product-card available-card">
+      <img class="product-image" src={base + image.src.slice(1)} alt={image.alt} loading="lazy"/>
+      <h3><a href={details}><span data-official-name>{product.title}</span></a></h3>
+      <p data-content>{product.description}</p>
+      <p class="meta" data-content>{platform} · {product.version}</p>
+      <div class="product-card-actions">
+        <a class="button" href={product.download.url}>{download}</a>
+        {product.downloadNotice && <p class="meta product-download-notice" data-content>{product.downloadNotice}</p>}
+        <a class="details-link" href={details}>{ko ? '자세히 보기' : 'View Details'} →</a>
+      </div>
+    </article>;
+  })}
+</div>

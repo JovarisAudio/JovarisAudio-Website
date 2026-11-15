@@ -1,5 +1,5 @@
-### Zone 4 in 2.2
+### Zone 4 icon recovery in 2.2.3
 
-Left-clicking now includes Zone 4 in the folding cycle. Edit can move items between the upper bar and Zone 4, or display items without dragging them.
+Fixed an issue where some registered icons were missing the first time Zone 4 opened and only appeared after clicking **Edit**. Tuck now waits briefly and retries once for only the registered items missed on the first lookup.
 
-Zone 4 is experimental and requires Accessibility permission. Some icons may go undetected, and some original menus may fail to open. Dropbox's full behavior is still unverified.
+Zone 4 is experimental. Some icons may go undetected, and some apps’ menus may fail to open.

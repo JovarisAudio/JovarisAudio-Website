@@ -12,6 +12,17 @@ const base = import.meta.env.BASE_URL;
 const url = (path) => localizedPath(path, locale, base);
 const audio = releasedProducts.filter(p => p.kind === 'audio-plugins');
 const apps = releasedProducts.filter(p => p.kind === 'macos-apps');
+const tuckCard = {
+  id: 'tuck',
+  title: tuck.name,
+  version: tuck.version,
+  packageVersion: tuck.version,
+  description: tuck[locale].description,
+  platformLabel: tuck[locale].platform,
+  downloadNotice: ko ? 'Apple 공증을 받지 않아 Gatekeeper가 첫 실행을 차단할 수 있습니다.' : 'Not notarized by Apple; Gatekeeper may block first launch.',
+  download: { url: tuck.downloads.dmg },
+  screenshots: [{ src: '/' + tuck.cover, alt: '' }],
+};
 ---
 {showTuck && !kind && <SoftwareIntro {locale}/>}
 {!kind && (audio.length > 0 || hasMacApps) && <div class="filters">
@@ -25,16 +36,7 @@ const apps = releasedProducts.filter(p => p.kind === 'macos-apps');
 </section>}
 {showTuck && <section class="section macos-collection">
   <h2>{kind ? (ko ? '제품 목록' : 'Apps') : 'macOS Apps'}</h2>
-  <ProductCards products={apps} {locale}>
-    <article class="card product-card app-announcement" data-content>
-      <img class="product-image" src={base + tuck.cover} alt="" loading="lazy"/>
-      <h3><a href={url(tuck.path)}>{tuck.name}</a></h3>
-      <p>{tuck[locale].description}</p>
-      <p class="meta">{tuck[locale].platform} · {tuck.version}</p>
-      <a class="button" href={tuck.downloads.dmg}>{tuck[locale].downloadButton} · {tuck.version}</a>
-      <a class="details-link" href={url(tuck.path)}>{ko ? '자세히 보기' : 'View details'} →</a>
-    </article>
-  </ProductCards>
+  <ProductCards products={apps} extraProduct={tuckCard} {locale}/>
 </section>}
 {!kind && previewProducts.length > 0 && <section class="section preview-section">
   <h2>In the Works</h2>

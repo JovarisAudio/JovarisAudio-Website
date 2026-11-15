@@ -69,8 +69,8 @@
   overflow: hidden;
   display: grid;
   align-items: center;
-  min-height: clamp(270px, 36vw, 400px);
-  padding: clamp(24px, 5vw, 62px);
+  min-height: clamp(240px, 29vw, 340px);
+  padding: clamp(22px, 3vw, 40px) clamp(24px, 5vw, 62px);
   border: 0;
   border-radius: 12px;
   background: #192832 !important;
@@ -84,15 +84,15 @@
   background-size: cover;
   background-position: center 60%;
 }
-.software-intro-panel .software-art img {
+.software-intro-panel .software-art > img {
   position: absolute;
   width: clamp(100px, 20vw, 240px);
   height: auto;
   object-fit: contain;
   opacity: .7;
 }
-.software-art img:first-child { right: 4%; bottom: 13%; }
-.software-art img:last-child { right: 23%; top: 10%; transform: rotate(-8deg); opacity: .48; }
+.software-art .software-ox { right: 4%; bottom: 13%; }
+.software-art .software-rodeo { right: 23%; top: 10%; transform: rotate(-8deg); opacity: .48; }
 .software-intro-copy { max-width: 51%; }
 .software-intro-copy h2 { margin: 0 0 16px; }
 .software-intro-copy h2,
@@ -104,7 +104,22 @@
 .macos-collection .product-card { padding: clamp(16px, 2.3vw, 24px); }
 .macos-collection .product-card h3 { padding-right: 0; }
 .macos-collection .product-image { aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 18px; }
-.macos-collection .app-announcement .product-image { object-position: center 75%; }
+.macos-collection .available-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.macos-collection .product-card-actions {
+  margin-top: auto;
+  width: 100%;
+}
+.macos-collection .product-card-actions .details-link {
+  display: block;
+  margin-left: 0;
+}
+@media (min-width: 701px) {
+  .macos-collection .product-download-notice { min-height: 3.6em; }
+}
 @media (max-width: 1000px) {
   .macos-collection .available-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -114,5 +129,113 @@
   .software-intro-panel .software-art {
     background-image: linear-gradient(90deg, #182630f5, #192832c9), var(--software-wood);
   }
-  .software-intro-panel .software-art img { opacity: .16; }
+  .software-intro-panel .software-art > img { opacity: .16; }
+}
+
+.software-intro-panel:not(.home-software-panel) .software-art {
+  background-image: linear-gradient(90deg, #182630 0%, #182630e8 27%, #18263026 56%, transparent 72%), var(--software-wood);
+  background-position: right center;
+}
+.software-intro-panel:not(.home-software-panel) .software-art img {
+  top: 3%;
+  bottom: auto;
+  width: clamp(68px, 11vw, 148px);
+  max-height: 28%;
+  object-position: center top;
+  opacity: 1;
+  filter: brightness(.92) drop-shadow(0 3px 5px #24150dcc);
+}
+.software-intro-panel:not(.home-software-panel) .software-ox { right: 8%; }
+.software-intro-panel:not(.home-software-panel) .software-rodeo { right: 34%; }
+@media (max-width: 700px) {
+  .software-intro-panel:not(.home-software-panel) .software-art img { top: 5%; max-height: 34%; }
+  .software-intro-panel:not(.home-software-panel) .software-rodeo { right: 59%; }
+  .software-intro-panel:not(.home-software-panel) .software-intro-body { padding-bottom: 170px; }
+  .software-intro-panel:not(.home-software-panel) .software-art {
+    top: auto;
+    height: 165px;
+    background-image: linear-gradient(180deg, #192832, transparent 42%), var(--software-wood);
+  }
+}
+
+.software-intro-panel:not(.home-software-panel) { padding: 0; }
+.software-intro-panel:not(.home-software-panel) .software-intro-body {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  min-height: clamp(240px, 29vw, 340px);
+  padding: clamp(22px, 3vw, 40px) clamp(24px, 5vw, 62px);
+}
+.software-screens {
+  position: relative;
+  isolation: isolate;
+  width: min(61%, 540px);
+  aspect-ratio: 3 / 1;
+  margin-top: 18px;
+}
+.software-screens img {
+  position: absolute;
+  display: block;
+  width: var(--screen-width);
+  left: var(--screen-left);
+  top: var(--screen-top);
+  height: auto;
+  border-radius: 4px;
+  filter: saturate(.8);
+  box-shadow: 0 4px 12px #101a2290;
+  transform: rotate(var(--screen-angle, 0deg));
+}
+.software-screen-tuck {
+  --screen-width: 38%;
+  --screen-left: 7%;
+  --screen-top: 2%;
+  --screen-angle: -2deg;
+  opacity: .75;
+}
+.software-screen-dashboard {
+  --screen-width: 34%;
+  --screen-left: 1%;
+  --screen-top: 18%;
+  --screen-angle: -3deg;
+  opacity: .9;
+}
+.software-screen-gated {
+  --screen-width: 32%;
+  --screen-left: 32%;
+  --screen-top: 8%;
+  --screen-angle: 2deg;
+  opacity: .82;
+}
+.software-screen-comp {
+  --screen-width: 28%;
+  --screen-left: 6%;
+  --screen-top: 63%;
+  --screen-angle: -2deg;
+  opacity: .82;
+}
+.software-screen-phase {
+  --screen-width: 25%;
+  --screen-left: 61%;
+  --screen-top: 13%;
+  --screen-angle: 3deg;
+  opacity: .94;
+}
+.software-screen-meter {
+  --screen-width: 39%;
+  --screen-left: 31%;
+  --screen-top: 43%;
+  --screen-angle: -1deg;
+  z-index: 1;
+}
+.software-screens .software-screen-motor {
+  --screen-width: 16%;
+  --screen-left: 83%;
+  --screen-top: 44%;
+  --screen-angle: 2deg;
+  box-shadow: none;
+}
+@media (max-width: 700px) {
+  .software-intro-panel:not(.home-software-panel) .software-intro-body { padding-bottom: 170px; }
+  .software-screens { width: 100%; }
 }

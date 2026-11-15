@@ -174,3 +174,13 @@ Tuck 1.1 brings together the three-section menu bar, two-stage folding, and one-
 ### 2.1 — Experimental Zone 4
 
 Introduced the wooden Zone 4 panel, item selection in Edit, and icon names on hover. Edit looked up as many as four apps at a time in the background. The speed improvement had yet to be measured.
+
+### Zone 4 in 2.2
+
+Left-clicking now includes Zone 4 in the folding cycle. Edit can move items between the upper bar and Zone 4, or display items without dragging them.
+
+Zone 4 is experimental and requires Accessibility permission. Some icons may go undetected, and some original menus may fail to open. Dropbox's full behavior is still unverified.
+
+### 2.2.2 — Wider Zone 4 panel
+
+Widened the Zone 4 panel and made it close automatically after 10 seconds of inactivity.

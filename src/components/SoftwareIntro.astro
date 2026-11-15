@@ -3,16 +3,28 @@ import { localizedPath } from '../lib/i18n.mjs';
 const { locale, home = false } = Astro.props;
 const ko = locale === 'ko';
 const base = import.meta.env.BASE_URL;
+const artwork = home ? 'software-wood.jpg' : 'software-woodland-squirrel.jpg';
 ---
-<section class:list={['section', 'software-intro-panel', { 'home-software-panel': home }]} style={{ '--software-wood': `url(${base}images/software-wood.jpg)` }} data-content>
-  <div class="software-art" aria-hidden="true">
-    <img src={base + 'images/software-ox.png'} alt="" width="500" height="350" />
-    <img src={base + 'images/rodeo-icon.webp'} alt="" width="256" height="256" />
-  </div>
-  <div class="software-intro-copy">
-    {home && <h2>Software</h2>}
-    <p class="software-intro">{ko ? '사운드를 다듬고 작업 흐름을 정리하는 도구.' : 'Tools for shaping sound and keeping work in view.'}</p>
-    <p>{ko ? '오디오 플러그인부터, 작업 중인 Mac의 상태를 살피고 메뉴 막대를 정리하는 작은 앱까지.' : 'Audio plug-ins and small macOS apps for monitoring activity, checking system load, and tidying the menu bar.'}</p>
-    {home && <a href={localizedPath('software', locale, base)}>{ko ? '소프트웨어 둘러보기' : 'Explore software'} →</a>}
+<section class:list={['section', 'software-intro-panel', { 'home-software-panel': home }]} style={{ '--software-wood': `url(${base}images/${artwork})` }} data-content>
+  <div class="software-intro-body">
+    <div class="software-art" aria-hidden="true">
+      <img class="software-ox" src={base + 'images/software-ox.png'} alt="" width="500" height="350" />
+      <img class="software-rodeo" src={base + 'images/rodeo-icon.webp'} alt="" width="256" height="256" />
+    </div>
+    <div class="software-intro-copy">
+      {home && <h2>Software</h2>}
+      <p class="software-intro">{ko ? '사운드를 다듬고 작업 흐름을 정리하는 도구.' : 'Tools for shaping sound and keeping work in view.'}</p>
+      <p>{ko ? '오디오 플러그인부터, 작업 중인 Mac의 상태를 살피고 메뉴 막대를 정리하는 작은 앱까지.' : 'Audio plug-ins and small macOS apps for monitoring activity, checking system load, and tidying the menu bar.'}</p>
+      {home && <a href={localizedPath('software', locale, base)}>{ko ? '소프트웨어 둘러보기' : 'Explore software'} →</a>}
+    </div>
+    {!home && <div class="software-screens">
+      <img class="software-screen-dashboard" src={base + 'images/software-rodeo-dashboard.jpg'} alt="Red Horse Rodeo dashboard"/>
+      <img class="software-screen-tuck" src={base + 'images/software-tuck-zone4.jpg'} alt="Tuck Zone 4"/>
+      <img class="software-screen-comp" src={base + 'images/software-comp-panel.jpg'} alt="Plug-in panel concept"/>
+      <img class="software-screen-gated" src={base + 'images/software-gated-reverb-concept.jpg'} alt="Gated Reverb UI concept"/>
+      <img class="software-screen-phase" src={base + 'images/software-phase-check-concept.jpg'} alt="Phase Check UI concept"/>
+      <img class="software-screen-motor" src={base + 'images/software-motor61bridge.png'} alt="Motor61 Bridge"/>
+      <img class="software-screen-meter" src={base + 'images/software-track-meter.png'} alt="Track Meter horizontal interface"/>
+    </div>}
   </div>
 </section>
