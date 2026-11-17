@@ -1,0 +1,28 @@
+{
+  "ko": {
+    "title": "차이제곱 · 음악 연습 기록장",
+    "description": "차이제곱은 오늘 무엇을 연습했고 어디에서 막혔는지, 다음에 무엇을 다시 해볼지 적는 음악 작업실입니다. 피아노와 리듬 연습부터 카피, 편곡, 기타, 시창, 화성학까지 한곳에서 기록하고, Logic과 Pro Tools 작업을 함께 정리할 수 있습니다.",
+    "paragraphs": [
+      "첫 화면에는 제작자가 실제로 남긴 피아노·리듬 연습 4회가 샘플로 담겨 있습니다. 카드를 열어 각 세션에서 한 일과 다음에 확인할 항목을 볼 수 있습니다. 주간 리뷰에서는 날짜별 기록이 어떻게 주간 요약으로 모이는지 확인할 수 있습니다.",
+      "2026.11 공개판은 한국어와 영어를 지원합니다. 시창 템플릿은 1~8도 개별 음정 8개와 종합 패턴 1개입니다. 건반을 듣고 따라 부르기부터 먼저 부르고 건반으로 확인하기까지 세 단계로 기록할 수 있습니다.",
+      "공개 샘플은 로그인 없이 바로 볼 수 있습니다. 개인 기록은 실제 앱에서 로그인한 계정별로 저장됩니다."
+    ],
+    "alt": [
+      "차이제곱 한국어 대시보드와 제작자의 공개 연습 샘플 4회",
+      "차이제곱 한국어 주간 리뷰에 표시된 주별 연습 기록과 시간"
+    ]
+  },
+  "en": {
+    "title": "Chai Jegop · Music Practice Studio",
+    "description": "Chai Jegop is a workspace for keeping track of what you practiced, where you got stuck, and what to try next. Keep piano, rhythm, transcription, arranging, guitar, sight singing, and harmony logs alongside your Logic and Pro Tools work.",
+    "paragraphs": [
+      "The dashboard includes four piano and rhythm sessions from the creator’s own practice. Open a sample to see what happened in that session and what to revisit. Weekly Review shows how dated logs add up across the week.",
+      "The November 2026 public release is available in Korean and English. It includes nine sight-singing templates, from unison through octave and a combined exercise, with three ways to practice from playing first to singing first.",
+      "Browse public samples without signing in. Personal records are saved to your account after you sign in to the hosted app."
+    ],
+    "alt": [
+      "Chai Jegop English dashboard with four public practice samples",
+      "Chai Jegop English weekly review showing session counts and practice time by week"
+    ]
+  }
+}

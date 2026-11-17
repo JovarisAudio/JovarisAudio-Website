@@ -8,7 +8,7 @@ export async function siteData(){
  const musicIndex=contentIndex(await getCollection('music'));
  const journal=published(journalIndex.originals),music=published(musicIndex.originals);
  validateArchive([...journal,...music],publicCatalog,music);validateRoutes(journalIndex.all,musicIndex.all);
- const fixed=['music','journal','journal/series','software','software/audio-plugins','software/downloads','software/manuals','software/release-notes','software/beta-testing',tuck.path,'support','about',...Object.keys(categories).map(k=>'journal/category/'+k)];
+ const fixed=['music','journal','journal/series','software','software/chaijegop','software/audio-plugins','software/downloads','software/manuals','software/release-notes','software/beta-testing',tuck.path,'support','about',...Object.keys(categories).map(k=>'journal/category/'+k)];
  if(hasMacApps)fixed.push('software/macos-apps');
  const listing=[...fixed,...[...new Set(journal.flatMap(e=>e.data.tags))].map(t=>'journal/tag/'+encodeURIComponent(t)),...[...new Set(journal.map(e=>e.data.series).filter(Boolean))].map(s=>'journal/series/'+s)];
  const routes=listing.flatMap(path=>['en','ko'].map(locale=>({path:(locale==='ko'?'ko/':'')+path,logicalPath:path,locale,alternates:{en:path+'/',ko:'ko/'+path+'/'}})));

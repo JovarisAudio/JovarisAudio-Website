@@ -1,0 +1,41 @@
+---
+import copy from '../data/chaijegop/copy.json';
+import { Content as KoreanNotes } from '../data/chaijegop/release_notes.ko.md';
+import { Content as EnglishNotes } from '../data/chaijegop/release_notes.en.md';
+import { Content as KoreanQuickStart } from '../data/chaijegop/quick_start.ko.md';
+import { Content as EnglishQuickStart } from '../data/chaijegop/quick_start.en.md';
+
+const { locale } = Astro.props;
+const ko = locale === 'ko';
+const text = copy[locale];
+const Notes = ko ? KoreanNotes : EnglishNotes;
+const QuickStart = ko ? KoreanQuickStart : EnglishQuickStart;
+const base = import.meta.env.BASE_URL + 'chaijegop/';
+const publicDemo = base + (ko ? '' : 'en/');
+const workspace = 'https://chaijegop.glossystingray1.chatgpt.site/' + (ko ? '' : 'en');
+---
+<article class="article" data-content>
+  <p class="lead">{text.description}</p>
+  {text.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+  <div class="actions">
+    <a class="button" href={publicDemo}>{ko ? '공개 샘플 보기' : 'View practice samples'}</a>
+    <a href={workspace}>{ko ? '개인 기록장 열기' : 'Open personal workspace'} ↗</a>
+  </div>
+  {['dashboard', 'weekly-review'].map((screen, index) => (
+    <figure class="journal-screenshot">
+      <img src={base + 'screenshots/' + screen + '-' + locale + '.jpg'} alt={text.alt[index]} loading="lazy" />
+    </figure>
+  ))}
+  <section class="section">
+    <h2>{ko ? '간단 매뉴얼' : 'Quick start'}</h2>
+    <QuickStart />
+  </section>
+  <section class="section">
+    <h2>{ko ? '2026.11 공개판 릴리즈 노트' : 'November 2026 public release notes'}</h2>
+    <Notes />
+  </section>
+</article>
+
+<style>
+  .actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+</style>
