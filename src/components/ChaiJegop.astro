@@ -20,6 +20,7 @@ const workspace = 'https://chaijegop.glossystingray1.chatgpt.site/' + (ko ? '' :
   <div class="actions">
     <a class="button" href={publicDemo}>{ko ? '공개 샘플 보기' : 'View practice samples'}</a>
     <a href={workspace}>{ko ? '개인 기록장 열기' : 'Open personal workspace'} ↗</a>
+    <a href={import.meta.env.BASE_URL + 'journal/chai-jegop' + (ko ? '' : '-en') + '/'}>{ko ? '개발기 읽기' : 'Read the development journal'}</a>
   </div>
   {['dashboard', 'weekly-review'].map((screen, index) => (
     <figure class="journal-screenshot">

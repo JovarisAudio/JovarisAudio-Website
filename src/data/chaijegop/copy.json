@@ -1,6 +1,6 @@
 {
   "ko": {
-    "title": "차이제곱 · 음악 연습 기록장",
+    "title": "차이제곱 (Squared) · 음악 연습 기록장",
     "description": "차이제곱은 오늘 무엇을 연습했고 어디에서 막혔는지, 다음에 무엇을 다시 해볼지 적는 음악 작업실입니다. 피아노와 리듬 연습부터 카피, 편곡, 기타, 시창, 화성학까지 한곳에서 기록하고, Logic과 Pro Tools 작업을 함께 정리할 수 있습니다.",
     "paragraphs": [
       "첫 화면에는 제작자가 실제로 남긴 피아노·리듬 연습 4회가 샘플로 담겨 있습니다. 카드를 열어 각 세션에서 한 일과 다음에 확인할 항목을 볼 수 있습니다. 주간 리뷰에서는 날짜별 기록이 어떻게 주간 요약으로 모이는지 확인할 수 있습니다.",
@@ -13,7 +13,7 @@
     ]
   },
   "en": {
-    "title": "Chai Jegop · Music Practice Studio",
+    "title": "Chai Jegop (Squared) · Music Practice Studio",
     "description": "Chai Jegop is a workspace for keeping track of what you practiced, where you got stuck, and what to try next. Keep piano, rhythm, transcription, arranging, guitar, sight singing, and harmony logs alongside your Logic and Pro Tools work.",
     "paragraphs": [
       "The dashboard includes four piano and rhythm sessions from the creator’s own practice. Open a sample to see what happened in that session and what to revisit. Weekly Review shows how dated logs add up across the week.",
