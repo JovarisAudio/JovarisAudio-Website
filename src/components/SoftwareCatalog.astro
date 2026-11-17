@@ -38,6 +38,7 @@ const tuckCard = {
   <h2>{kind ? (ko ? '제품 목록' : 'Apps') : 'macOS Apps'}</h2>
   <ProductCards products={apps} extraProduct={tuckCard} {locale}/>
 </section>}
+<slot name="updates"/>
 {!kind && previewProducts.length > 0 && <section class="section preview-section">
   <h2>In the Works</h2>
   <div class="preview-grid">{previewProducts.map(p => <article class="preview-item">
@@ -45,5 +46,4 @@ const tuckCard = {
     <h3 data-official-name>{p.title}</h3>
   </article>)}</div>
 </section>}
-<slot name="updates"/>
 <SupportNote {locale}/>

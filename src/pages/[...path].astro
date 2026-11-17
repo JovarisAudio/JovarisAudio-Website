@@ -51,9 +51,8 @@ const list=category?journal.filter(e=>e.data.category===category):tag?journal.fi
 {(path==='software'||path==='software/release-notes')&&journal.filter(e=>(e.data.translation_of||e.id)==='sisyphus-almanac-1-1-0').map(e=>(
   <section class="section">
     <img src={import.meta.env.BASE_URL+'images/almanac-1-1-0/almanac-today.png'} alt={locale==='ko'?'샘플 데이터를 사용한 알마낵 오늘 대시보드':'Almanac Today dashboard with sample data'} loading="lazy"/>
-    <h2>{locale==='ko'?'개발 업데이트':'Development Update'}</h2>
+    <h2><a href={u('journal/'+e.id)} data-content>Sisyphus Almanac</a></h2>
     <p class="meta">{locale==='ko'?'macOS 앱':'macOS app'}</p>
-    <p><a href={u('journal/'+e.id)} data-content>{e.data.title}</a></p>
     <p data-content>{e.data.description}</p>
   </section>
 ))}
