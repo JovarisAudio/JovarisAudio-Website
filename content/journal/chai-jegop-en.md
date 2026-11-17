@@ -12,6 +12,8 @@ translation_reviewed: true
 
 Chai Jegop started with my own practice notes. After working on piano and rhythm, I’d tell ChatGPT what I’d done that day, where I kept losing the beat, and what I wanted to try next. Around then, ChatGPT kept recommending a feature called Sites. It came up so often I wondered if it was new. Then ChatGPT suggested turning my notes into a web app, so I gave it a try.
 
+While I was picking a name, I looked up a few words that sounded like **chai**. In Thai, **châi châi (ใช่ ๆ)** is like saying “Yeah, exactly.” There’s also the Hebrew **chai (חַי)**, pronounced closer to *khai*. It means “alive” and can be used to say “I’m living.” In my own words, **“just living.”** In Korean, *chai* means “difference,” and *jegop* means “squared.” I liked putting them together to mean that **the small differences you make in practice add up to a bigger difference over time.**
+
 Practice logs remind me of something from when I used to teach. My students were barely practicing, so I had them keep a log. I even made the whole template for them. One section asked what they’d listened to that day and how it made them feel. One student put down Kwon Jin-ah’s “운이 좋았지” and wrote underneath:
 
 > It felt like being lucky in love…?
