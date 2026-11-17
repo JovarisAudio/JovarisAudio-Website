@@ -243,3 +243,13 @@
 .journal-screenshot { margin: 1.75rem 0; }
 .journal-screenshot img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .journal-screenshot figcaption { margin-top: .5rem; color: var(--muted); font-size: .875rem; }
+
+.software-updates img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+}

@@ -45,19 +45,24 @@ const list=category?journal.filter(e=>e.data.category===category):tag?journal.fi
 {product&&<><p class="lead" data-content>{product.description}</p><p class="notice">Free · {product.version}</p><div class="filters"><a href={u('software/'+product.id)}>제품 소개</a>{product.manual&&<a href={u('software/'+product.id+'/manual')}>Manual</a>}{product.release&&<a href={u('software/'+product.id+'/release-notes')}>Release Notes</a>}</div>{rodeo&&(part==='manual'||part==='release-notes')?<RodeoDocumentation {product} {locale} {part}/>:part==='manual'?<section class="article"><h2>설치 및 사용 안내</h2><p data-content>{product.manual}</p>{product.download.releaseNotes&&<a href={product.download.manual}>{locale==='ko'?'한·영 매뉴얼':'Bilingual manual'} ↗</a>}</section>:part==='release-notes'?<section class="article"><h2>{product.version}</h2><p data-content>{product.release}</p>{product.download.releaseNotes&&<a href={product.download.releaseNotes}>{locale==='ko'?'한·영 릴리즈 노트':'Bilingual release notes'} ↗</a>}</section>:<>{<section class="section"><h2>{product.kind==='macos-apps'?(locale==='ko'?'제품 이미지':'Product artwork'):'스크린샷'}</h2>{product.screenshots.map(s=><img class="product-image" src={u(s.src.slice(1)).slice(0,-1)} alt={s.alt} loading="lazy"/>)}</section>}{product.features?.length>0&&<section class="section"><h2>기능</h2><ul>{product.features.map(f=><li data-content>{f}</li>)}</ul></section>}<section class="section"><h2>지원 플랫폼 및 포맷</h2><p>{product.platforms.map(x=>x.os+' · '+x.formats.join(' / ')).join(' · ')}</p></section>{product.issues?.length>0&&<section class="section"><h2>알려진 문제</h2><ul>{product.issues.map(i=><li data-content>{i}</li>)}</ul></section>}{product.faq?.length>0&&<section class="section"><h2>FAQ</h2><dl>{product.faq.map(item=><><dt data-content>{item.question}</dt><dd data-content>{item.answer}</dd></>)}</dl></section>}<ProductDownload {product} {locale}/>{product.credit&&<p class="meta" data-content>{product.credit}<br/>{product.copyright}</p>}</>}</>}
 {product&&<SupportNote locale={locale}/>}
 {tuckPage&&<TuckRelease locale={locale}/>}
+{chaiPage&&<ChaiJegop {locale}/>}
+{!chaiPage&&!tuckPage&&!product&&path.startsWith('software')&&<SoftwareCatalog showTuck={path==='software'||path==='software/macos-apps'} kind={path==='software/macos-apps'?'macos-apps':undefined} locale={locale}>
+<div slot="updates" class="grid software-updates">
 {(path==='software'||path==='software/release-notes')&&journal.filter(e=>(e.data.translation_of||e.id)==='sisyphus-almanac-1-1-0').map(e=>(
   <section class="section">
+    <img src={import.meta.env.BASE_URL+'images/almanac-1-1-0/almanac-today.png'} alt={locale==='ko'?'샘플 데이터를 사용한 알마낵 오늘 대시보드':'Almanac Today dashboard with sample data'} loading="lazy"/>
     <h2>{locale==='ko'?'개발 업데이트':'Development Update'}</h2>
     <p><a href={u('journal/'+e.id)} data-content>{e.data.title}</a></p>
     <p data-content>{e.data.description}</p>
   </section>
 ))}
-{chaiPage&&<ChaiJegop {locale}/>}
 {path==='software'&&<section class="section">
+  <img src={import.meta.env.BASE_URL+'chaijegop/screenshots/dashboard-'+locale+'.jpg'} alt={chaiCopy[locale].alt[0]} loading="lazy"/>
   <h2><a href={u('software/chaijegop')} data-content>{chaiCopy[locale].title}</a></h2>
   <p data-content>{chaiCopy[locale].description}</p>
 </section>}
-{!chaiPage&&!tuckPage&&!product&&path.startsWith('software')&&<SoftwareCatalog showTuck={path==='software'||path==='software/macos-apps'} kind={path==='software/macos-apps'?'macos-apps':undefined} locale={locale}/>}
+</div>
+</SoftwareCatalog>}
 {path==='support'&&<section class="article"><p class="lead">처음부터 무료로.</p><p>구독이나 사용 시간 제한 없이, 초기 모든 제품을 무료로 제공합니다.</p><p>초기 모든 제품은 무료로 제공하며, 후원 여부에 따른 기능 제한은 없습니다.</p><SupportNote locale={locale}/><p>결제는 외부 후원 서비스에서 처리하며 이 사이트는 결제 정보를 수집하지 않습니다.</p></section>}
 {path==='about'&&<section class="article"><p class="lead">음악·청취·연구와 창작 과정에서 직접 만든 도구를 위한 공간.</p><p>작곡과 믹싱, 음악 연구와 연습, 청취와 오디오 도구 개발을 하나의 이름 아래 기록합니다. 실제 작업에서 출발한 경험과 결과를 차곡차곡 남깁니다.</p><p>음악과 개발이 서로를 돕고, 기록이 실제 작업을 방해하지 않는 운영을 지향합니다.</p></section>}
 </Layout>
