@@ -1,12 +1,14 @@
 ---
 title: "Sisyphus Almanac 1.1.0"
 date: 2026-11-17
-description: "Sisyphus Almanac의 빠른 기록과 하루 회고를 소개하는 macOS 개발 업데이트입니다. 현재 비공개 시험 중입니다."
+description: "오늘의 일과를 적고, 하루 끝에 잠깐 돌아봅니다."
 draft: false
 language: ko
 original_language: ko
 category: development-log
 ---
+
+현재 비공개 시험 중입니다.
 
 버전 날짜 · 2026-11-17
 

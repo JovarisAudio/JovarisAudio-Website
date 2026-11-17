@@ -1,7 +1,7 @@
 ---
 title: "Sisyphus Almanac 1.1.0"
 date: 2026-11-17
-description: "A macOS development update introducing rapid logging and daily review in Sisyphus Almanac. Currently in private testing."
+description: "A place to write down the day’s work and take a moment to look back."
 draft: false
 language: en
 original_language: ko
@@ -9,6 +9,8 @@ category: development-log
 translation_of: sisyphus-almanac-1-1-0
 translation_reviewed: true
 ---
+
+Currently in private testing.
 
 Version date · 2026-11-17
 
