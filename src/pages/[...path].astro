@@ -48,7 +48,7 @@ const list=category?journal.filter(e=>e.data.category===category):tag?journal.fi
 {chaiPage&&<ChaiJegop {locale}/>}
 {!chaiPage&&!tuckPage&&!product&&path.startsWith('software')&&<SoftwareCatalog showTuck={path==='software'||path==='software/macos-apps'} kind={path==='software/macos-apps'?'macos-apps':undefined} locale={locale}>
 <div slot="updates" class="grid software-updates">
-{(path==='software'||path==='software/release-notes')&&journal.filter(e=>(e.data.translation_of||e.id)==='sisyphus-almanac-1-1-0').map(e=>(
+{(path==='software'||path==='software/release-notes')&&journal.filter(e=>(e.data.translation_of||e.id)==='sisyphus-almanac-1-1-1').map(e=>(
   <section class="section">
     <img src={import.meta.env.BASE_URL+'images/almanac-1-1-0/almanac-today.png'} alt={locale==='ko'?'샘플 데이터를 사용한 알마낵 오늘 대시보드':'Almanac Today dashboard with sample data'} loading="lazy"/>
     <h2><a href={u('journal/'+e.id)} data-content>Sisyphus Almanac</a></h2>
