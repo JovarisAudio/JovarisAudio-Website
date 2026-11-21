@@ -6,7 +6,7 @@ draft: false
 language: ko
 original_language: ko
 category: development-log
-seo_title: "Sisyphus Almanac 1.1.3 | macOS 일정·불렛저널·작업 기록 앱 | Jovaris Audio"
+seo_title: "Sisyphus Almanac 1.1.4 | macOS 일정·불렛저널·작업 기록 앱 | Jovaris Audio"
 seo_description: "Sisyphus Almanac은 Apple Calendar, Reminders, Notes, Obsidian, Mail과 Daily Log를 연결하는 macOS 앱입니다. 불렛저널 기반 기록, 하루 회고, Excel 가계부 연결을 제공합니다."
 ---
 
@@ -16,9 +16,9 @@ seo_description: "Sisyphus Almanac은 Apple Calendar, Reminders, Notes, Obsidian
 
 **Every day, we push the stone again.**
 
-공개 테스트 버전 1.1.3 · macOS 15.0 이상 · Apple silicon·Intel 바이너리 포함
+공개 테스트 버전 1.1.4 · macOS 15.0 이상 · Apple silicon·Intel 바이너리 포함
 
-<a class="button" href="https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/Sisyphus_Almanac_1.1.3_macOS.dmg">다운로드 · 1.1.3</a> · [사용자 매뉴얼](#manual) · [개발기](#development-journal)
+<a class="button" href="https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.4/Sisyphus_Almanac_1.1.4_macOS.dmg">다운로드 · 1.1.4</a> · [사용자 매뉴얼](#manual) · [개발기](#development-journal)
 
 이 공개 테스트 버전은 임시 서명 상태이며 Apple 공증을 받지 않아 macOS가 실행을 차단할 수 있습니다.
 
@@ -76,7 +76,13 @@ Today에서는 오늘 일정, 미리 알림, 다가오는 일정과 최근 메�
 
 <h2 id="paper-capture">종이 기록을 Daily Log로 · 시험 기능</h2>
 
-이미지를 가져와 Mac 내부 Vision OCR로 인식합니다. 원본과 결과를 나란히 대조하고 본문·종류·날짜·중요 표시를 수정한 뒤 선택한 항목만 저장합니다. 처음에는 모두 미선택이며 중복 후보가 있으면 저장을 멈춥니다. 손글씨 정확도는 입증되지 않았습니다. 인식한 시각은 저장하지 않으며 초안 복구에도 제한이 있으므로 원본 이미지는 별도 보관하세요. 자세한 저장·복구 제한은 매뉴얼에서 확인할 수 있습니다.
+Mac 내부 Apple Vision OCR을 사용합니다. 1.1.4에서는 선택 저장 충돌을 수정하고 원문 기호와 완료 후보를 직접 검토하는 조작을 더했습니다. 원본과 결과를 대조하며 본문·종류·날짜·기호·중요 표시를 수정한 뒤 선택한 항목만 저장합니다. 선택한 원문 기호와 명시한 일정 시각을 보존합니다. OCR의 별·당구장 기호와 일부 글자는 여전히 원본 확인이 필요합니다.
+
+검토 창이 열린 동안 저장 실행 취소로 이미지와 검토 항목을 복원할 수 있습니다. 다른 이미지를 시작하거나 초안을 삭제하면 이전 실행 취소 기록을 비웁니다. 이미지는 20 MB·3,200만 화소로 제한하며 인식 중에는 닫기를 막고 손상 초안의 자동 덮어쓰기를 방지합니다. 다중 창·강제 종료·디스크 오류 복구는 미완료이므로 원본은 별도 보관하세요.
+
+<h2 id="entries-by-date">날짜별 기록과 완료한 일을 찾아보기</h2>
+
+빠른 기록 위의 날짜별 기록에서 전체·남은 할 일·완료 필터를 선택합니다. 날짜 입력, 앞뒤 날짜, 오늘, 기록 있는 날짜로 이동하며 Daily Review에는 별도 완료 목록이 있습니다. 완료 목록은 배정된 기록 날짜 기준이며 실제 완료 시각의 통계가 아닙니다. 이월하면 배정 날짜가 바뀌고 이동 이력은 유지됩니다.
 
 <h2 id="calendar">일정에서 관련 자료까지</h2>
 
@@ -123,15 +129,56 @@ Almanac은 날짜와 정보를 함께 담는 연감입니다. 시지프스는 �
 
 <h2 id="download">다운로드 및 설치</h2>
 
-**1.1.3 · 빌드 114 · macOS 15.0 이상 · Apple silicon·Intel 바이너리 포함**
+**1.1.4 · 빌드 116 · macOS 15.0 이상 · Apple silicon·Intel 바이너리 포함**
 
-[다운로드 · 1.1.3](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/Sisyphus_Almanac_1.1.3_macOS.dmg) · [SHA-256 체크섬](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/SHA256SUMS.txt)
+[다운로드 · 1.1.4](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.4/Sisyphus_Almanac_1.1.4_macOS.dmg) · [SHA-256 체크섬](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.4/SHA256SUMS.txt)
 
 DMG를 열어 Sisyphus Almanac.app을 Applications로 드래그하세요. 이 공개 테스트 빌드는 임시 서명(ad hoc) 상태이며 Apple 공증을 받지 않아 macOS가 실행을 차단할 수 있습니다. 캘린더, 미리 알림, 메모, Mail 및 파일 접근에는 해당 macOS 권한이 필요합니다. Intel 바이너리는 패키지에 들어 있으며 Intel 및 최소 지원 OS 실기 검증은 미완료입니다.
 
 DMG와 체크섬 파일을 같은 폴더에 둔 다음 `shasum -a 256 -c SHA256SUMS.txt`로 확인할 수 있습니다.
 
-<h2 id="release-notes">1.1.3 릴리즈 노트 · Build 114</h2>
+<h2 id="release-notes">1.1.4 릴리즈 노트 · Build 116</h2>
+
+2026년 11월 21일 · 공개 테스트
+
+[GitHub 릴리즈](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/tag/v1.1.4)
+
+## 언어
+
+시스템 또는 macOS 앱별 언어 설정을 따릅니다. 한국어·영어를 지원하며 다른 언어의 기본값은 영어입니다. 언어를 강제 고정하지 않습니다. 개인 기록·일정·메일 내용은 번역하지 않습니다.
+
+## Paper Capture
+
+- 선택 저장 뒤 목록을 비울 때 이전 배열 위치를 참조해 종료될 수 있던 문제를 UUID 기반 참조로 수정했습니다.
+- 줄 앞 체크 표식과 줄 끝 X, 한글에 붙은 X를 완료 후보로 분리하고 직접 수정할 수 있게 했습니다.
+- 원문 기호 선택과 완료한 할 일 항목을 추가했습니다. 별·당구장 기호의 정확한 자동 판별을 보장하지 않으며 중요 여부는 별도로 선택합니다.
+- 원문 기호와 일정 시각을 기록에 보존합니다. 시각 지정 선택을 분리해 화면에만 기본 시각이 나타나는 불일치도 방지합니다. 기존 초안·Daily Log 형식은 유지합니다.
+- 저장 실행 취소 시 원본 이미지와 수정 초안도 복원합니다. 새 이미지 가져오기·초안 삭제 후에는 이전 취소 기록을 지워 새 초안 덮어쓰기를 방지합니다.
+- 날짜 제목은 항목과 분리하고 불확실하면 확인 경고를 표시합니다. 모든 항목은 기본 미선택입니다.
+- 20MB·3200만 화소 제한과 인식 중 닫기 방지, 종료된 인식 작업 결과 무시 처리를 추가했습니다.
+- 읽지 못한 초안의 자동 덮어쓰기를 방지하고 초안 보존 오류가 성공 문구로 가려지지 않게 했습니다.
+
+## 날짜별 기록과 완료
+
+날짜별 기록을 빠른 입력 위에 배치하고 전체·남은 할 일·완료 필터를 추가했습니다. 이전·다음 날짜, 날짜 선택, 오늘, 기록 있는 날짜 메뉴로 이동합니다. Daily Review에 완료한 할 일 목록을 명확히 표시합니다.
+
+이 화면은 기록에 배정된 날짜 기준입니다. 별도의 실제 완료 시각별 통계가 아니며 이월 시 날짜와 이동 이력이 기존 방식대로 유지됩니다.
+
+## 검증 범위와 제한
+
+주신 손글씨 한 장으로 격리 앱에서 5개 항목·완료 3개, 저장·취소·재저장·중복 차단을 확인한 이전 수정에 더해 이번 공개 후보의 단위·한영 화면 시험을 수행합니다. 정확한 최종 결과는 검증 문서를 확인하세요. 빌드 성공을 전체 외부 서비스 회귀 통과로 간주하지 않습니다.
+
+임시 서명·Apple 미공증 공개 테스트입니다. macOS가 실행을 차단할 수 있습니다. Apple silicon·Intel 바이너리를 포함하지만 Intel·최소 OS 실기는 미검증입니다.
+
+별·당구장·일부 글자와 날짜는 여전히 오인식할 수 있으므로 원본 대조가 필요합니다. PDF·다중 페이지, OneDrive 기록 자동 백업·복구, Daily Log 연결 편집, Finance 메일 연결은 미구현입니다. Mail은 계정별 최대 12건·오늘 최근 3건·첫 로드와 수동 새로고침이며 주기 갱신은 없습니다. 본문·첨부 미리보기, 미읽음 유지 전체 조건, 원본 이동·삭제 복원과 느린 조회의 화면 응답도 미완료 또는 미검증입니다.
+
+다중 창 잠금·강제 종료·디스크 오류 복구·드롭/클립보드 전체 조건·한글 IME 개별 키·실 Notes/EventKit/Finance/OneDrive 전체 회귀는 완료하지 않았습니다. 원본 사진을 별도 보관하세요. 기존 1.1.1~1.1.3 공개 파일은 변경하지 않습니다.
+
+
+<details>
+<summary>이전 릴리즈 기록 · 1.1.1~1.1.3</summary>
+
+### 1.1.3 릴리즈 노트 · Build 114
 
 2026년 11월 21일 · 공개 테스트
 
@@ -195,6 +242,9 @@ Universal Release 빌드, 단위 시험 7건, 한국어·영어 시작 UI, 종�
 
 DMG 설치 창의 앱 아이콘, 화살표, Applications 폴더 사이 간격을 조정했습니다.
 
+
+</details>
+
 <h2 id="documentation">문서</h2>
 
 - [Release Notes — 한국어](../sisyphus-almanac-1-1-1/#release-notes)
@@ -207,19 +257,27 @@ DMG 설치 창의 앱 아이콘, 화살표, Applications 폴더 사이 간격을
 - [1.1.0 English](../sisyphus-almanac-1-1-0-en/)
 
 <details id="manual" open>
-<summary>사용자 매뉴얼 · 1.1.3</summary>
+<summary>사용자 매뉴얼 · 1.1.4</summary>
 
-## 설치와 언어
+[한국어 매뉴얼 내려받기](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.4/USER_MANUAL.ko.md)
+
+<h2 id="manual-section-1">설치와 언어</h2>
 
 macOS 15.0 이상에서 DMG를 열어 Sisyphus Almanac.app을 Applications로 드래그합니다. 기존 앱은 종료한 뒤 교체하세요. Apple silicon·Intel 바이너리를 포함하지만 Intel 실기는 미검증입니다. 임시 서명·미공증 상태이며 macOS가 실행을 차단할 수 있습니다.
 
 한국어·영어를 지원합니다. 시스템 또는 macOS 앱별 언어를 사용하며 변경 후 재실행하세요. 개인 데이터는 번역하지 않습니다.
 
-## 오늘과 자료 소스
+<h2 id="manual-section-2">날짜별 기록과 완료 목록</h2>
+
+Daily Log의 날짜별 기록은 빠른 기록보다 위에 있습니다. 전체·남은 할 일·완료 필터로 구분하세요. 이전·다음 기록 날짜, 날짜 선택, 오늘, 기록 있는 날짜 메뉴로 이동할 수 있습니다. Daily Review의 완료한 할 일 목록에서도 해당 날짜의 완료 기록을 확인합니다.
+
+날짜는 항목에 배정된 기록 날짜입니다. 실제 완료 버튼을 누른 시각별 통계는 아닙니다. 과거 날짜에 배정된 일을 나중에 완료하면 원래 배정 날짜에 완료로 남습니다. 이월한 항목은 옮긴 날짜에 있고 이전 날짜에는 이동 이력이 남습니다. 제외한 기록은 기본 필터에서 숨깁니다.
+
+<h2 id="manual-section-3">오늘과 자료 소스</h2>
 
 ‘이 Mac’은 실제 연결 자료이고 ‘샘플’은 예시입니다. 이전에 고른 데이터 소스는 재실행 후 유지됩니다. 샘플 일정과 실제 일정은 서로 다릅니다. 권한 요청은 해당 자료 화면에서 수행하며, 허용 여부는 시스템 설정의 개인정보 보호 및 보안에서 확인합니다.
 
-## 캘린더에서 일정 입력
+<h2 id="manual-section-4">캘린더에서 일정 입력</h2>
 
 1. 사이드바의 캘린더를 엽니다.
 2. 날짜를 이동하고 일간·주간·월간을 고릅니다.
@@ -230,11 +288,11 @@ macOS 15.0 이상에서 DMG를 열어 Sisyphus Almanac.app을 Applications로 �
 
 직접 Apple 캘린더를 사용하려면 같은 위치의 ‘캘린더 앱 열기’를 누르세요. 이 버튼은 앱을 여는 기능이며 특정 일정으로 이동하거나 기존 일정을 편집하는 기능은 아닙니다. 실제 일정 저장 후 선택·갱신은 이번 설치본에서 아직 실기 검증하지 못했습니다.
 
-## 빠른 입력
+<h2 id="manual-section-5">빠른 입력</h2>
 
 빠른 입력에서는 일정 또는 미리 알림을 선택하고 저장 위치를 직접 고릅니다. 미리 알림은 필요하면 마감 날짜·시간을 지정합니다. 권한이 없거나 저장 위치·제목이 없으면 저장할 수 없습니다. 입력한 종류와 저장 서비스가 맞는지 확인하세요.
 
-## Daily Log 기록
+<h2 id="manual-section-6">Daily Log 기록</h2>
 
 종류 메뉴의 할 일·일정·메모·아이디어를 고르면 기호 없이 여러 줄을 작성할 수 있습니다. 기본은 할 일입니다. 직접 기호를 입력한 줄은 기호가 우선합니다. 미리보기에서 저장 종류를 확인한 후 저장하세요.
 
@@ -250,13 +308,13 @@ Daily Log의 일정은 로컬 기록입니다. Apple 캘린더 일정 생성은 
 
 입력 이동은 ⌘⌥L, 미리보기는 ⌘⇧P, 저장은 ⌘Return입니다. 조합 중 한글이 있으면 조합을 끝낸 뒤 실행하세요. 입력기별 상세 키 동작 전체는 미검증입니다.
 
-## 상태·이월·회고
+<h2 id="manual-section-7">상태·이월·회고</h2>
 
 기록의 상태 메뉴에서 가능한 항목에 대해 완료·이월·날짜 지정·중요 표시를 선택합니다. 이월·날짜 지정에서는 대상 날짜를 확인하고 적용합니다. Daily Review에서 남은 일을 정리하고 회고를 저장합니다. 마지막 로컬 변경은 실행 취소할 수 있지만 재실행 후까지 유지되는 무제한 취소 기능은 아닙니다.
 
 X, >, < 기호를 직접 입력하는 기존 방식도 사용할 수 있습니다. 저장 전에 처리할 대상 할 일과 날짜를 확인하세요. 날짜 대화상자에서 Enter만으로 적용되지 않으면 적용 버튼을 누르세요.
 
-## Paper Capture 시험 기능
+<h2 id="manual-section-8">Paper Capture 시험 기능</h2>
 
 1. Daily Log의 Paper Capture를 엽니다.
 2. 이미지 선택으로 사진·캡처를 가져옵니다. 드롭·이미지 붙여넣기 경로도 있으나 실제 조작 검증은 미완료입니다.
@@ -264,11 +322,11 @@ X, >, < 기호를 직접 입력하는 기존 방식도 사용할 수 있습니�
 4. 저장할 항목만 선택하세요. 초기에는 전부 미선택입니다. 낮은 신뢰도 표시는 재확인이 필요하다는 뜻입니다.
 5. 선택한 항목을 Daily Log에 저장합니다. 같은 날짜·종류·내용의 중복 후보가 있으면 수정하거나 선택 해제해야 합니다.
 
-한국어 손글씨 정확도는 입증되지 않았습니다. PDF는 지원하지 않습니다. OCR에서 보인 시각은 현재 저장되지 않으므로 별도로 입력하세요. 완료·이월 기호가 기존 기록을 자동 변경하지 않습니다.
+한국어 손글씨 전체 정확도는 입증되지 않았습니다. 원문 기호와 완료한 할 일 항목에서 별·당구장·줄 끝 X 해석을 직접 고칠 수 있습니다. 20MB·3200만 화소 이하 이미지를 사용하세요. 인식 중에는 닫기가 제한됩니다. PDF는 지원하지 않습니다. 일정 항목은 시작 시각 지정을 켜서 시각을 입력·수정합니다. 인식된 시각도 보존하며 시각이 없으면 임의의 기본 시각을 표시하지 않습니다. 완료·이월 기호가 기존 기록을 자동 변경하지 않습니다.
 
-원본과 검토 항목은 앱 컨테이너의 Library/Application Support/Sisyphus Almanac/Paper Capture/ReviewDraft.json에 임시 저장됩니다. 저장 성공 또는 초안 삭제 후 이미지와 항목은 비워집니다. 저장 취소로 원본 이미지까지 복원되지는 않습니다. 손상 초안·디스크 오류·동시 창의 복구는 보장되지 않으므로 가져온 원본을 별도 보관하고 오류가 나면 창을 닫기 전에 원문과 수정 내용을 확보하세요.
+원본과 검토 항목은 앱 컨테이너의 Library/Application Support/Sisyphus Almanac/Paper Capture/ReviewDraft.json에 임시 저장됩니다. 저장 성공 또는 초안 삭제 후 이미지와 항목은 비워집니다. 검토창이 열린 동안 저장 실행 취소로 원본 이미지와 수정 초안을 복원할 수 있습니다. 새 이미지 가져오기 또는 초안 삭제 후에는 이전 취소 기회가 사라집니다. 손상 초안·디스크 오류·동시 창의 복구는 보장되지 않으므로 가져온 원본을 별도 보관하고 오류가 나면 창을 닫기 전에 원문과 수정 내용을 확보하세요.
 
-## Mail
+<h2 id="manual-section-9">Mail</h2>
 
 Apple Mail에서 계정을 먼저 설정합니다. Almanac Mail에서 계정 연결과 macOS 자동화 접근을 허용합니다. 계정별 받은편지함 최대 12건을 조회하며 검색은 가져온 목록 범위입니다. 전체 계정의 정확한 미읽음 합계가 아닙니다.
 
@@ -278,19 +336,23 @@ Apple Mail에서 계정을 먼저 설정합니다. Almanac Mail에서 계정 연
 
 일정·미리 알림의 자료 연결에서 제목과 message:// 주소 또는 Message-ID로 원본 참조를 붙일 수 있습니다. Daily Log와 Finance의 메일 연결 편집은 아직 제공하지 않습니다.
 
-## 메모·Obsidian·Finance
+<h2 id="manual-section-10">메모·Obsidian·Finance</h2>
 
 메모는 Apple Notes 접근을 사용합니다. Obsidian은 사용자가 고른 Vault의 Markdown을 읽으며 북마크로 연결을 복원합니다.
 
 Finance에서 가계부 선택으로 Excel 파일을 연결합니다. OneDrive 파일은 로컬 OneDrive 폴더에서 선택하세요. 연결 확인·원본 열기·다시 선택을 사용합니다. Almanac이 Excel 원본을 수정하거나 금액을 자동 추출하지 않습니다. 로컬 파일 연결은 OneDrive 서버 동기화 완료의 증거가 아닙니다. Daily Log의 OneDrive 자동 백업·복구 기능도 없습니다.
 
-## 메뉴바와 문제 해결
+<h2 id="manual-section-11">메뉴바와 문제 해결</h2>
 
 설정에서 메뉴바 아이콘 표시를 전환합니다. 개발 시험 앱과 설치본을 동시에 열면 Dock에 여러 앱이 보일 수 있으므로 Applications의 설치본을 사용하세요.
 
 권한 거부 시 해당 화면의 요청과 시스템 설정을 확인합니다. 새 버전이나 별도 개발 앱은 다른 권한 항목으로 보일 수 있습니다. 실제 개인 자료를 오류 보고에 무심코 첨부하지 말고 앱 버전·재현 순서·오류 문구를 전달하세요. 외부 서비스 전체 회귀가 끝난 정식 안정판은 아닙니다.
 
 </details>
+
+<h2 id="development-1-1-4">개발 기록 · 원본을 보며 다시 확인하기</h2>
+
+이번에는 가져온 기록을 검토하고 저장한 기록을 날짜별로 다시 찾아보는 흐름을 다듬었습니다. Paper Capture에서 검토한 원문 기호와 명시한 시각을 보존하고, 열린 검토 창에서 저장을 취소하면 이미지와 항목을 되돌립니다. 날짜별 목록과 완료 목록으로 기록을 다시 살펴볼 수 있습니다. 인식 결과는 계속 원본과 대조해야 하며 복구와 외부 서비스 전체 회귀는 검증이 남아 있습니다.
 
 <h2 id="development-1-1-3">개발 기록 · 적은 것을 다시 살펴보는 과정</h2>
 
@@ -299,7 +361,7 @@ Finance에서 가계부 선택으로 Excel 파일을 연결합니다. OneDrive �
 <details id="development-journal">
 <summary>개발기 · 매일 굴리는 바위들</summary>
 
-아래는 1.1.0 비공개 시험 시기에 쓴 개발기입니다. 현재 공개 테스트 빌드는 1.1.3입니다.
+아래는 1.1.0 비공개 시험 시기에 쓴 개발기입니다. 현재 공개 테스트 빌드는 1.1.4입니다.
 
 **Jovaris Audio | macOS 앱 개발기 | v1.1.0**
 
