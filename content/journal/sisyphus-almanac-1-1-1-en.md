@@ -1,6 +1,6 @@
 ---
 title: "Sisyphus Almanac"
-date: 2026-11-18
+date: 2026-11-21
 description: "A Mac app for writing down the day’s work and taking a moment to look back."
 draft: false
 language: en
@@ -8,7 +8,7 @@ original_language: ko
 category: development-log
 translation_of: sisyphus-almanac-1-1-1
 translation_reviewed: true
-seo_title: "Sisyphus Almanac 1.1.2 | Calendar, Bullet Journal & Daily Log for Mac"
+seo_title: "Sisyphus Almanac 1.1.3 | Calendar, Bullet Journal & Daily Log for Mac"
 seo_description: "Sisyphus Almanac brings Apple Calendar, Reminders, Notes, Obsidian, Mail, and a Bullet Journal-inspired Daily Log into one macOS workspace."
 ---
 
@@ -18,15 +18,15 @@ A macOS workspace that connects schedules, tasks, notes, and reference materials
 
 **Every day, we push the stone again.**
 
-Public test 1.1.2 · macOS 15.0 or later · Apple silicon and Intel
+Public test 1.1.3 · macOS 15.0 or later · Apple silicon and Intel binaries included
 
-<a class="button" href="https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/tag/v1.1.2">Download · 1.1.2</a> · [User Manual](#manual) · [Development Journal](#development-journal)
+<a class="button" href="https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/Sisyphus_Almanac_1.1.3_macOS.dmg">Download · 1.1.3</a> · [User Manual](#manual) · [Development Journal](#development-journal)
 
 This public test version is ad hoc signed and has not been notarized by Apple. macOS may block it from launching.
 
 <figure class="journal-screenshot">
 <a href="../../images/almanac-1-1-0/almanac-today.png"><img src="../../images/almanac-1-1-0/almanac-today.png" alt="Sisyphus Almanac Today dashboard with a multiline rapid logging preview" width="2200" height="1696" /></a>
-<figcaption>Today dashboard · Sample data</figcaption>
+<figcaption>Today dashboard · Sample data · Version 1.1.0 screen, predating these changes</figcaption>
 </figure>
 
 [Capture Ideas as They Come](#daily-log) · [Review Today, Plan What Comes Next](#daily-review) · [From Events to Related Resources](#calendar) · [Download and Installation](#download) · [Documentation](#documentation)
@@ -68,9 +68,17 @@ Write several Bullet Journal-style lines and preview them before saving.
 
 For `X`, `>`, or `<`, enter a space and text after the symbol, then choose the target task in the preview. Pick a date when moving or scheduling a task. Daily Log saves event drafts and tasks in Almanac. Use Quick Capture and select a destination to save to Apple Calendar or Reminders.
 
+Choose **Task, Event, Note, or Idea** from the type menu (default: Task), or enter symbols directly. Symbols take precedence on their line. Preview with **⌘⇧P**, save with **⌘Return**, and focus input with **⌘⌥L**. Finish Korean text composition before saving.
+
 <h2 id="daily-review">Review Today, Plan What Comes Next</h2>
 
 Check what you finished, review what remains, and save a short reflection. Choose the task and date when you migrate or schedule it. The original date keeps a history of the move, and you can undo the last local change.
+
+The status menu offers completion, migration, scheduling, and priority. Confirm the target task and date before applying.
+
+<h2 id="paper-capture">From Paper to Daily Log · Experimental</h2>
+
+Bring in an image and run local Vision OCR on your Mac. Compare the original and results, correct text, type, date, and priority, then select the entries to save. Items begin unselected, and duplicate candidates block saving. Handwriting accuracy is unproven. Recognized times are not saved. Draft recovery is limited, so keep the original image separately. See the manual for recovery and save limitations.
 
 <h2 id="calendar">From Events to Related Resources</h2>
 
@@ -78,8 +86,10 @@ Browse Apple Calendar events by day, week, or month. Link Apple Reminders, notes
 
 <figure class="journal-screenshot">
 <a href="../../images/almanac-1-1-0/almanac-calendar.png"><img src="../../images/almanac-1-1-0/almanac-calendar.png" alt="Sisyphus Almanac weekly calendar with sample events" width="1858" height="1502" loading="lazy" /></a>
-<figcaption>Weekly calendar · Sample data</figcaption>
+<figcaption>Weekly calendar · Sample data · Version 1.1.0 screen, predating these changes</figcaption>
 </figure>
+
+Use **Add Event** or **Open Calendar App** above the calendar. The form starts on the date being viewed. Saving needs full Calendar access. Actual saving to the live service remains unverified.
 
 <h2 id="notes">Keep Your Notes Where They Belong</h2>
 
@@ -91,9 +101,13 @@ Almanac reads up to 12 recent inbox messages per active Apple Mail account and s
 
 Use **Open Mail App** to open Apple Mail directly.
 
+Today titles and inbox rows open the original in Apple Mail; arrow-key selection may also open messages. Mail refreshes on first load and manually. Body and attachment previews are unavailable.
+
 <h2 id="finance">Your Existing Excel Workbook</h2>
 
 Finance links a selected Excel workbook as a read-only reference. Check its name and path and open the original when needed. To use OneDrive, select the workbook from its local sync folder in Finder. Almanac leaves the workbook untouched, and OneDrive handles server sync.
+
+Korean and English follow the system or app-specific macOS language setting. Relaunch after changing it. Personal records and mail contents are not translated.
 
 <h2 id="menu-bar">Quick Access from the Menu Bar</h2>
 
@@ -111,15 +125,64 @@ I wanted a place to bring those days together.
 
 <h2 id="download">Download and Installation</h2>
 
-**1.1.2 · Build 113 · macOS 15.0 or later · Apple silicon and Intel**
+**1.1.3 · Build 114 · macOS 15.0 or later · Apple silicon and Intel binaries included**
 
-[Download · 1.1.2](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/tag/v1.1.2) · [SHA-256 checksums](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.2/SHA256SUMS.txt)
+[Download · 1.1.3](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/Sisyphus_Almanac_1.1.3_macOS.dmg) · [SHA-256 checksums](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/download/v1.1.3/SHA256SUMS.txt)
 
-Open the DMG and drag Sisyphus Almanac.app to Applications. This public test build is ad hoc signed and has not been notarized by Apple, so macOS may block it from opening. Calendar, Reminders, Notes, Mail, and file access require the corresponding macOS permissions. The package includes an Intel binary. This check did not include running the app on an Intel Mac.
+Open the DMG and drag Sisyphus Almanac.app to Applications. This public test build is ad hoc signed and has not been notarized by Apple, so macOS may block it from opening. Calendar, Reminders, Notes, Mail, and file access require the corresponding macOS permissions. The package includes an Intel binary. Intel hardware and the minimum supported OS have not been verified on physical machines.
 
 To verify the download, put the DMG and checksum file in the same folder and run `shasum -a 256 -c SHA256SUMS.txt`.
 
-<h2 id="release-notes">Version 1.1.2 Release Notes</h2>
+<h2 id="release-notes">Version 1.1.3 · Build 114</h2>
+
+November 21, 2026 · Public test
+
+[Official GitHub release](https://github.com/JovarisAudio/SisyphusAlmanac-Releases/releases/tag/v1.1.3)
+
+## Logging and review
+
+- Added a task, event, note, and idea type menu to Daily Log, with Task selected by default.
+- Direct symbol entry remains available. Symbols on a line take precedence over the type menu. Check each type in Preview before saving.
+- The status menu supports completion, migration, scheduling, and priority. Duplicate priority actions were removed.
+- Use ⌘⌥L to focus input, ⌘⇧P to preview, and ⌘Return to save. A guard prevents saving while Korean text composition is active.
+
+## Experimental Paper Capture
+
+- Select an image, drop an image, or paste an image from the clipboard for local Vision OCR on your Mac.
+- Compare the source and recognition results side by side. Edit text, type, date, and priority before saving selected items to Daily Log.
+- All items start unselected. A duplicate candidate with the same date, type, and content blocks saving.
+- Paper Capture does not automatically write to external Calendar or Reminders.
+
+## Calendar and Mail
+
+- Added Add Event and Open Calendar App above the calendar. The event form starts with the date currently being viewed.
+- Saving requires full macOS Calendar access. A return path to the saved event is implemented.
+- Recent mail on Today and inbox rows can open the original in Apple Mail. Changing selection with arrow keys can also open the original.
+- Mail shows up to 12 inbox messages per account and three recent messages on Today. It loads initially and refreshes manually, without a periodic refresh timer.
+
+## Korean and English
+
+The interface follows the system language or the app-specific macOS language setting. Dates are no longer fixed to Korean. Personal records and message contents are not translated.
+
+## Reported verification scope
+
+The release documentation reports a Universal Release build, seven unit tests, Korean and English startup UI, type and symbol parsing, completion, migration and undo, some printed-text OCR, and comparison with actual originals for already-read mail. The two calendar buttons and event form were checked in the installed app. These checks were not all repeated on the same final package.
+
+## Known limitations and unverified behavior
+
+- This is a public test version, ad hoc signed and not notarized by Apple. macOS may block launch.
+- Korean handwriting recognition accuracy, physical drag-and-drop and clipboard use, draft restoration after relaunch, and recovery from save errors are not sufficiently verified.
+- Paper Capture does not save recognized event times. Enter events requiring a time separately through Add Event.
+- Original preservation is not fully guaranteed with damaged drafts, disk errors, or multiple windows. Keep the source image separately. Successful saving clears the review image and draft items.
+- PDF, OneDrive record backup and restore, Daily Log attachment editing, and Finance mail-reference editing are not implemented.
+- Mail body and attachment previews and arbitrary mailbox selection are unavailable. Unread status before and after simple retrieval, recovery after originals are moved or deleted, and responsiveness during slow retrieval remain unverified.
+- Detailed input-method key behavior during Korean composition, complete external-service regression, Intel hardware, macOS 15.0 hardware, and every window size and mode remain unverified.
+- Actual calendar event saving was not verified for this change because Calendar permission was not granted in the installed app. No test events were created in personal calendars.
+
+Existing 1.1.1 and 1.1.2 public files remain available. Existing Daily Log formats and connection metadata are retained.
+
+
+### Previous version · 1.1.2
 
 Released November 18, 2026.
 
@@ -146,26 +209,99 @@ Adjusted the spacing between the app icon, arrow, and Applications folder in the
 - [1.1.0 English](../sisyphus-almanac-1-1-0-en/)
 
 <details id="manual" open>
-<summary>User Manual</summary>
+<summary>User Manual · 1.1.3</summary>
 
-The application requires macOS 15.0 or later. Open the distribution DMG and drag **Sisyphus Almanac.app** to **Applications**. The accompanying reports give the signing and installation status of this package. The application interface uses Korean labels.
+## Installation and language
 
-- **Today (오늘).** Choose **샘플** for sample data or **이 Mac** for local calendar and reminders. macOS may ask for permission when you connect a service.
-- **Calendar and reminders.** Use **예정** for upcoming items or **캘린더** for the day, week, and month views. Select an event to see details and related items. In a live event, **자료 연결** adds a reminder, an Apple Notes reference, or a mail link.
-- **Quick Capture (빠른 입력).** Enter the item and select its destination calendar, reminders list, or Notes folder before saving.
-- **Daily Log.** In **빠른 기록**, put a marker at the start of a line followed by a space. Use `*` for tasks, `@` for event drafts, `-` for notes, and `+` for ideas. Prefix a supported entry with `!` for priority. Choose **미리보기**, then **Daily Log에 저장**. Event drafts are local. Use Quick Capture for an Apple Calendar event.
-- **Daily Review.** Use `X`, `>`, or `<` and choose a task to complete, move, or schedule it. The **정리** menu offers the same actions and exclusion. **회고 저장** saves the daily reflection. **실행 취소** reverses the last local change.
-- **Notes and Obsidian.** Open **메모** to browse Apple Notes. In **Obsidian**, choose a vault folder to browse Markdown and use **Obsidian 열기** to open the source application.
-- **Mail.** In **받은 편지함**, choose **모든 계정 연결** once and respond to the macOS automation prompt if shown. Filter by account and use **새로고침** to refresh. The inbox displays up to 12 messages per active Apple Mail account, and Today shows three. **연결한 메일** shows references saved with events or reminders. **Apple Mail에서 원본 열기** opens the source.
-- **Finance.** Choose **가계부 선택** and select your Excel workbook. For OneDrive, choose the file in your synced Finder folder. **Excel에서 원본 열기** opens it in Excel. Use **연결 확인** or **다시 선택** if the reference needs attention.
-- **Menu bar.** Click the Sisyphus symbol for Today’s summary. Use **메뉴바에 Sisyphus Almanac 표시** in Settings to control visibility. Tuck is a separate product and is optional.
+Requires macOS 15.0 or later. Open the DMG and drag Sisyphus Almanac.app to Applications. Quit the existing app before replacing it. Apple silicon and Intel binaries are included, but Intel hardware has not been tested. The public test build is ad hoc signed and not notarized; macOS may block launch.
+
+Korean and English follow the system or app-specific macOS language setting. Relaunch after changing the setting. Personal data is not translated.
+
+## Today and data sources
+
+This Mac uses your connected data; Sample uses examples. Source selections persist across launches. Sample and real events are separate. Request permissions from the relevant screen and check permissions in System Settings → Privacy & Security.
+
+## Adding a calendar event
+
+1. Open Calendar in the sidebar.
+2. Choose a date and day, week, or month view.
+3. Select Add Event. The form starts on the date being viewed.
+4. Check the title, start date and time, duration, and destination calendar.
+5. If access is needed, use Request Access and allow full Calendar access in macOS.
+6. Save with Add Event. A path back to the saved event is implemented.
+
+Open Calendar App launches Apple Calendar. It does not navigate to a particular event or edit an existing event. Actual saving, selection, and refresh in the installed app remain unverified for this release.
+
+## Quick Capture
+
+Choose an event or reminder and its destination. Reminders may include a due date and time. Saving requires permission, a destination, and a title. Check that the entry type matches the destination service.
+
+## Daily Log
+
+Choose Task, Event, Note, or Idea from the type menu and write one or more lines without symbols. Task is the default. A directly entered symbol takes precedence on its line. Check the types in Preview, then save.
+
+~~~text
+* Review the mix
+! * Review the master today
+@ 14:00 Piano practice
+- Observations
++ Instrumentation for the next piece
+~~~
+
+Daily Log events are local records. Use Calendar → Add Event or Quick Capture to create an Apple Calendar event.
+
+Use ⌘⌥L to focus input, ⌘⇧P to preview, and ⌘Return to save. Finish Korean text composition first. Detailed key behavior across input methods remains unverified.
+
+## Status, migration, and review
+
+Use an entry's status menu for supported completion, migration, scheduling, and priority actions. Confirm the target date when migrating or scheduling. Review remaining work and save a reflection in Daily Review. The last local change can be undone; unlimited undo across relaunches is unavailable.
+
+The existing X, >, and < symbol commands remain available. Check the target task and date before saving. If Enter does not apply the date dialog, select Apply.
+
+## Experimental Paper Capture
+
+1. Open Paper Capture in Daily Log.
+2. Select an image. Drag-and-drop and clipboard image paths also exist, but physical use remains unverified.
+3. Recognition runs locally on your Mac. Compare the source with the results and edit text, type, date, and priority.
+4. Select only the entries to save. All start unselected. Low confidence means further review is needed.
+5. Save selected entries to Daily Log. Duplicate candidates sharing the same date, type, and content must be edited or deselected.
+
+Korean handwriting accuracy has not been established. PDF is unsupported. Recognized times are not saved and need separate entry. Completion and migration symbols do not automatically modify existing records.
+
+The source and reviewed items are temporarily saved in the app container under Library/Application Support/Sisyphus Almanac/Paper Capture/ReviewDraft.json. Successful saving or draft deletion clears the image and items. Undoing a save does not restore the source image. Recovery from damaged drafts, disk errors, and simultaneous windows is not guaranteed. Keep the original separately and preserve the text and corrections before closing a window after an error.
+
+## Mail
+
+Set up accounts in Apple Mail first. Connect accounts in Almanac Mail and allow macOS Automation access. Up to 12 inbox messages per account are retrieved. Search covers only this retrieved list; this is not an exact unread total across all accounts.
+
+Today shows three recent messages. Selecting a title or inbox row opens the original. Arrow-key selection changes may also open originals. Open Mail App launches Apple Mail itself. Almanac does not provide sending, replying, deleting, moving, or marking-read controls. Opening an original may cause Apple Mail to mark it read.
+
+Use the initial load or Refresh button. There is no configurable automatic refresh interval. Arbitrary mailbox selection, server search, and body or attachment rendering are unsupported. Moving or deleting originals or changing accounts can break references.
+
+Event and reminder resource links can reference an original using a title and message:// URL or Message-ID. Daily Log and Finance mail-link editing are not yet available.
+
+## Notes, Obsidian, and Finance
+
+Notes uses Apple Notes access. Obsidian reads Markdown in the vault you select and restores the connection through a bookmark.
+
+Choose an Excel workbook in Finance. Select OneDrive files from the local OneDrive folder. Use Check Connection, Open Original, or Choose Again. Almanac does not edit the Excel original or automatically extract amounts. A local file connection does not prove OneDrive server sync has completed. Daily Log has no automatic OneDrive backup or restore.
+
+## Menu bar and troubleshooting
+
+Toggle the menu bar icon in Settings. Use the installed copy in Applications to avoid confusing it with development apps.
+
+If access is denied, check the screen's permission request and System Settings. A new release or separate development app can appear as a different permission entry. Share the app version, reproduction steps, and error message when reporting issues; avoid attaching personal data. Full external-service regression remains incomplete.
 
 </details>
+
+<h2 id="development-1-1-3">Development Journal · Reviewing What We Capture</h2>
+
+Version 1.1.3 adds menus alongside direct symbol entry so daily logging can start without memorizing markers. Paper Capture follows the same approach: bring a paper record into view, compare it with locally recognized text, and choose what to keep. Human review remains part of the workflow. Handwriting accuracy and draft recovery still need testing.
 
 <details id="development-journal">
 <summary>Development Journal · The Stones We Push Every Day</summary>
 
-This journal entry dates to private testing of 1.1.0. Version 1.1.2 is the current public test build.
+This journal entry dates to private testing of 1.1.0. Version 1.1.3 is the current public test build.
 
 **Jovaris Audio | macOS Development Journal | v1.1.0**
 
