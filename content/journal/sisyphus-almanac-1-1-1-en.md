@@ -236,7 +236,7 @@ Open Calendar App launches Apple Calendar. It does not navigate to a particular 
 
 Choose an event or reminder and its destination. Reminders may include a due date and time. Saving requires permission, a destination, and a title. Check that the entry type matches the destination service.
 
-## Daily Log
+<h2 id="manual-daily-log">Daily Log</h2>
 
 Choose Task, Event, Note, or Idea from the type menu and write one or more lines without symbols. Task is the default. A directly entered symbol takes precedence on its line. Check the types in Preview, then save.
 
