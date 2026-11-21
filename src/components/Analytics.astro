@@ -1,0 +1,75 @@
+---
+const {locale='en'} = Astro.props;
+const enabled = Astro.site?.hostname === 'jovarisaudio.github.io';
+const ko = locale === 'ko';
+---
+{enabled && <>
+  <aside id="analytics-choice" class="analytics-choice" aria-label={ko?'방문 통계 설정':'Visitor analytics settings'} hidden>
+    <p>{ko?'방문 통계 수집에 Google Analytics 쿠키를 사용해도 될까요? 허용하면 방문 페이지와 기기·유입 정보가 Google에 전달되어 사이트 개선에 사용됩니다.':'May we use Google Analytics cookies? If you allow them, page visits, device and referral information are sent to Google to help improve this site.'} <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">{ko?'데이터 사용 안내':'How data is used'}</a></p>
+    <div><button type="button" data-analytics-choice="granted">{ko?'허용':'Allow'}</button><button type="button" data-analytics-choice="denied">{ko?'거절':'Decline'}</button></div>
+  </aside>
+  <button type="button" id="analytics-settings" class="analytics-settings">{ko?'방문 통계 설정':'Analytics settings'}</button>
+</>}
+<script>
+const measurementId = 'G-LNW3JDEHX8';
+const storageKey = 'jovaris-analytics-consent';
+const panel = document.getElementById('analytics-choice');
+if (panel && location.hostname === 'jovarisaudio.github.io') {
+  const analyticsWindow = window as typeof window & {dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void};
+  let loaded = false;
+  const start = () => {
+    if (loaded) return;
+    loaded = true;
+    analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+    analyticsWindow.gtag = function () { analyticsWindow.dataLayer!.push(arguments); };
+    analyticsWindow.gtag('js', new Date());
+    analyticsWindow.gtag('config', measurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      page_location: location.origin + location.pathname
+    });
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.appendChild(script);
+  };
+  let choice: string | null = null;
+  try { choice = localStorage.getItem(storageKey); } catch {}
+  panel.hidden = choice === 'granted' || choice === 'denied';
+  if (choice === 'granted') start();
+  document.querySelectorAll<HTMLButtonElement>('[data-analytics-choice]').forEach(button => {
+    button.addEventListener('click', () => {
+      const next = button.dataset.analyticsChoice!;
+      try { localStorage.setItem(storageKey, next); } catch {}
+      if (next === 'granted') start();
+      if (next === 'denied') {
+        analyticsWindow.gtag?.('consent', 'update', {analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'});
+        document.cookie.split(';').forEach(cookie => {
+          const name = cookie.split('=')[0].trim();
+          if (!name.startsWith('_ga')) return;
+          for (const domain of ['', '; domain=' + location.hostname, '; domain=.' + location.hostname]) {
+            document.cookie = name + '=; Max-Age=0; path=/' + domain;
+          }
+        });
+      }
+      panel.hidden = true;
+      if (next === 'denied' && loaded) location.reload();
+    });
+  });
+  document.getElementById('analytics-settings')?.addEventListener('click', () => {
+    panel.hidden = false;
+    panel.querySelector<HTMLButtonElement>('button')?.focus();
+  });
+}
+</script>
+<style>
+.analytics-choice{position:fixed;bottom:18px;left:18px;right:18px;max-width:640px;margin:auto;padding:18px 22px;background:#f7f5ef;color:#243746;border:1px solid #b9aa8e;border-radius:10px;box-shadow:0 4px 24px #172b3a20;z-index:1000}
+.analytics-choice[hidden]{display:none}
+.analytics-choice p{font-size:14px;line-height:1.65;margin:0 0 12px}
+.analytics-choice a{color:inherit;text-decoration:underline}
+.analytics-choice div{display:flex;gap:10px}
+.analytics-choice button{min-height:44px;padding:8px 20px;border:1px solid #243746;border-radius:6px;background:transparent;color:#243746;font:inherit;cursor:pointer}
+.analytics-choice button:first-child{background:#243746;color:#f7f5ef}
+.analytics-settings{display:block;margin:0 auto 24px;border:0;background:transparent;color:#596971;text-decoration:underline;cursor:pointer;font:inherit;font-size:13px;min-height:44px}
+button:focus-visible{outline:2px solid #a88656;outline-offset:3px}
+</style>
